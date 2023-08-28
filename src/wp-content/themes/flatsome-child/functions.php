@@ -1,16 +1,21 @@
 <?php
-// Add custom Theme Functions here
+
+/*
+ * Define Variables
+ */
+if (!defined('THEME_DIR'))
+    define('THEME_DIR', get_template_directory());
+if (!defined('THEME_URL'))
+    define('THEME_URL', get_template_directory_uri());
 
 
-//<!-- ###--- Add CSS Dashboard ---###-->
+/*
+ * Include framework files
+ */
+foreach (glob(THEME_DIR.'-child' . "/includes/*.php") as $file_name) {
+    require_once ( $file_name );
+}
 
-add_action('admin_head', 'my_custom_fonts');
-function my_custom_fonts() {?>
-    <style>        
-        .menu-item-settings .ux-menu-item-options.js-attached:first-child{display: none;} 
-        .rank-math-sidebar-panel>div{width: 100%;}
-    </style>';
-<?php }
 
 
 
