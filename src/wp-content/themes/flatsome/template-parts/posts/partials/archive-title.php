@@ -13,11 +13,13 @@
 			<div class="text-left  text-uppercase breadcrumbs-hp">
 				<?php if (function_exists('rank_math_the_breadcrumbs')) rank_math_the_breadcrumbs(); ?>
 			</div>
+			<?php $obj = get_queried_object(); $h_title = $obj->name; ?> <!-- hpadd -->
 			<h1 class="page-title is-large uppercase text-left">
 				<?php
+					echo $h_title;//hpadd
 
 				if ( is_category() ) :
-					printf( __( '%s', 'flatsome' ), '<span>' . single_cat_title( '', false ) . '</span>' );
+					//printf( __( '%s', 'flatsome' ), '<span>' . single_cat_title( '', false ) . '</span>' );
 
 				elseif ( is_tag() ) :
 					printf( __( 'Tag Archives: %s', 'flatsome' ), '<span>' . single_tag_title( '', false ) . '</span>' );

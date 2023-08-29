@@ -70,7 +70,7 @@ function shortcode_latest_from_blog($atts, $content = null, $tag = '' ) {
 	 	'image_size' => 'medium',
 	 	'image_width' => '',
 	 	'image_radius' => '',
-	 	'image_height' => '56%',
+	 	'image_height' => '52%',
 	    'image_hover' => '',
 	    'image_hover_alt' => '',
 	    'image_overlay' => '',
@@ -211,7 +211,8 @@ $recentPosts = new WP_Query( $args );
 // Get repeater HTML.
 get_flatsome_repeater_start($repeater);
 
-while ( $recentPosts->have_posts() ) : $recentPosts->the_post();
+//while ( $recentPosts->have_posts() ) : $recentPosts->the_post();
+while(have_posts()) : the_post(); //hpadd - show all post
 
 			$col_class    = array( 'post-item' );
 			$show_excerpt = $excerpt;
@@ -242,7 +243,7 @@ while ( $recentPosts->have_posts() ) : $recentPosts->the_post();
   					<div class="box-image" <?php echo get_shortcode_inline_css($css_args_img); ?>>
   						<div class="<?php echo $classes_image; ?>" <?php echo get_shortcode_inline_css($css_image_height); ?>>
 							<a href="<?php the_permalink() ?>" class="plain" aria-label="<?php echo esc_attr( the_title() ); ?>">
-								<?php the_post_thumbnail( $image_size ); ?>
+								<?php the_post_thumbnail( 'full' ); ?> 
 							</a>
   							<?php if($image_overlay){ ?><div class="overlay" style="background-color: <?php echo $image_overlay;?>"></div><?php } ?>
   							<?php if($style == 'shade'){ ?><div class="shade"></div><?php } ?>

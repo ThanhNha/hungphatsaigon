@@ -288,7 +288,7 @@ if ( !function_exists( 'flatsome_posts_pagination' ) ) {
                 'format'        => $format,
                 'current'       => max( 1, get_query_var('paged') ),
                 'total'         => $total,
-                'mid_size'      => 3,
+                'mid_size'      => 2,
                 'type'          => 'array',
                 'prev_text'     => $prev_arrow,
                 'next_text'     => $next_arrow,
