@@ -73,18 +73,18 @@ if ($out_of_stock) $classes[] = 'out-of-stock';
 				echo '<div class="title-wrapper">';
 
 				if (is_product_category()) {
-					echo '<h3 class="name product-title ' . esc_attr(apply_filters('woocommerce_product_loop_title_classes', 'woocommerce-loop-product__title')) . '">';
-					woocommerce_template_loop_product_link_open();
-					echo get_the_title();  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					woocommerce_template_loop_product_link_close();
-					echo '</h3>';
-					echo '</div>';
-				} else {
 					echo '<h2 class="name product-title ' . esc_attr(apply_filters('woocommerce_product_loop_title_classes', 'woocommerce-loop-product__title')) . '">';
 					woocommerce_template_loop_product_link_open();
 					echo get_the_title();  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					woocommerce_template_loop_product_link_close();
 					echo '</h2>';
+					echo '</div>';
+				} else {
+					echo '<h3 class="name product-title ' . esc_attr(apply_filters('woocommerce_product_loop_title_classes', 'woocommerce-loop-product__title')) . '">';
+					woocommerce_template_loop_product_link_open();
+					echo get_the_title();  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					woocommerce_template_loop_product_link_close();
+					echo '</h3>';
 					echo '</div>';
 				}
 
