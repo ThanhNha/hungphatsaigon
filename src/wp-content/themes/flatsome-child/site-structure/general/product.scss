@@ -1,0 +1,22 @@
+.single-product {
+  .product-info {
+    background: #fff;
+    border-radius: 10px;
+    padding-bottom: 0px;
+  }
+  .product-footer {
+    background: #fff;
+    border-radius: 10px;
+    margin-top: 30px;
+  }
+  
+  .related-products-wrapper,.products-orther,.recentes-vues {
+    max-width: 1250px;
+    margin-left: auto;
+    margin-right: auto;
+    background: #fff;
+    border-radius: 10px;
+    margin-bottom: 30px;
+  }
+  
+}

@@ -230,6 +230,8 @@ get_header();
         </div>
         <?php get_template_part('template-parts/posts/layout', get_theme_mod('blog_post_layout', 'right-sidebar')); ?>
         <?php get_template_part('template-parts/single-last', 'modify') ?>
+        <?php get_template_part('template-parts/related', 'post') ?>
+
     <?php endif; ?>
 </div>
 
