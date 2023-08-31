@@ -8,13 +8,13 @@
       ?>
       <span class="hidden-xs pt_5">Chia sẻ: </span>
       <span class="item click_share div_hover" data-link="https://www.facebook.com/sharer/sharer.php?u=<?php echo $link_share; ?>">
-        <img width="32" src="<?php echo get_site_url() ?>/icon/facebook.png" class="ml_10">
+        <img width="32" src="<?php echo get_stylesheet_directory_uri(); ?>/icon/facebook.png" class="ml_10">
       </span>
       <span class="item click_share  div_hover" data-link="https://twitter.com/intent/tweet?url=<?php echo $link_share; ?>">
-        <img width="32" src="<?php echo get_site_url(); ?>/icon/twitter.png" class="ml_10">
+        <img width="32" src="<?php echo get_stylesheet_directory_uri(); ?>/icon/twitter.png" class="ml_10">
       </span>
       <span class="item click_share  div_hover" data-link="http://pinterest.com/pin/create/button/?url=<?php echo urlencode(get_permalink($post->ID)); ?>&media=<?php echo $pinterestimage[0]; ?>&description=<?php echo get_the_title(); ?>">
-        <img width="32" src="<?php echo get_site_url(); ?>/icon/pinterest.png" class="ml_10">
+        <img width="32" src="<?php echo get_stylesheet_directory_uri(); ?>/icon/pinterest.png" class="ml_10">
       </span>
     </div>
   </div>
