@@ -1,0 +1,549 @@
+.ppocta-ft-fix {
+    width: 52px;
+    position: fixed;
+    bottom: 10px;
+    left: 30px;
+    text-align: center;
+    z-index: 99999;
+}
+@media (max-width: 768px) {
+    .ppocta-ft-fix {
+        bottom: 5%;
+    }
+}
+#messengerButton {
+    display: inline-block;
+    position: relative;
+    width: 52px;
+    height: 52px;
+    line-height: 52px;
+    border-radius: 100%;
+    background: url("/wp-content/plugins/atcgroup/icon/messenger.svg") center center no-repeat;
+    margin-bottom: 10px;
+}
+a#messengerButton {outline:none; }
+a#messengerButton span {
+    z-index:10;display:none; 
+    padding:10px;
+    left:45px;
+    width:200px; 
+    line-height:16px;
+    border-radius:4px;
+    box-shadow: 5px 5px 8px #CCC;
+}
+a#messengerButton:hover span {
+    display:inline; position:absolute; color:#111;
+    border:1px solid #DCA; background:#fffAF0;
+} 
+@media (max-width: 640px) {
+    a#messengerButton:hover span{
+        display: none;
+    }
+}
+#zaloButton {
+    display: inline-block;
+    position: relative;
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
+    border-radius: 100%;
+    background: url("/wp-content/plugins/atcgroup/icon/zalo.svg") center center no-repeat;
+}
+a#zaloButton {outline:none; }
+a#zaloButton span {
+    z-index:10;
+    display:none; 
+    padding:10px;
+    left:45px;
+    width:200px; 
+    line-height:16px;
+    border-radius:4px;
+    box-shadow: 5px 5px 8px #CCC;
+}
+a#zaloButton:hover span {
+    display:inline; position:absolute; color:#111;
+    border:1px solid #DCA; background:#fffAF0;
+} 
+
+@media (max-width: 640px) {
+    a#zaloButton:hover span{
+        display: none;
+    }
+}
+
+#calltrap-btn {
+    background-color: #2074a1;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    display: block;
+    height: 48px;
+    line-height: 100px;
+    opacity: 0.7;
+    text-align: center;
+    width: 48px;
+    z-index: 9999;
+    -webkit-animation: calltrap_opacity 3s infinite linear;
+    -moz-animation: calltrap_opacity 3s infinite linear;
+    -o-animation: calltrap_opacity 3s infinite linear;
+    animation: calltrap_opacity 3s infinite linear
+}
+a#calltrap-btn {outline:none; }
+a#calltrap-btn strong {font-size:18px; color: red;}
+a#calltrap-btn span {
+    z-index:10;display:none; 
+    padding:10px;
+    top: 0;
+    left:45px;
+    width:200px; 
+    line-height:16px;
+    border-radius:4px;
+    box-shadow: 5px 5px 8px #CCC;
+}
+a#calltrap-btn:hover span {
+    display:inline; position:absolute; color:#111;
+    border:1px solid #DCA; background:#fffAF0;
+} 
+
+#calltrap-btn.calltrap_offline {
+    margin-bottom: 20px;
+}
+
+#calltrap-ico {
+    width: 48px;
+    height: 48px;
+    border: 0;
+    -webkit-border-radius: 50% !important;
+    border-radius: 50% !important;
+    -o-background-clip: padding-box;
+    background-clip: padding-box;
+    -webkit-animation: uptocallmini 1.5s 0s ease-out infinite;
+    -moz-animation: uptocallmini 1.5s 0s ease-out infinite;
+    -o-animation: uptocallmini 1.5s 0s ease-out infinite;
+    animation: uptocallmini 1.5s 0s ease-out infinite
+}
+
+#calltrap-ico:before {
+    content: "";
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    background-image: url("/wp-content/plugins/atcgroup/icon/phone.png");
+    background-repeat: no-repeat;
+    -webkit-animation: calltrap_spin 3s infinite linear;
+    -moz-animation: calltrap_spin 3s infinite linear;
+    -o-animation: calltrap_spin 3s infinite linear;
+    animation: calltrap_spin 3s infinite linear
+}
+
+.calltrap_offline #calltrap-ico {
+    -webkit-animation: uptocallmini_offline 1.5s 0s ease-out infinite;
+    -moz-animation: uptocallmini_offline 1.5s 0s ease-out infinite;
+    -o-animation: uptocallmini_offline 1.5s 0s ease-out infinite;
+    animation: uptocallmini_offline 1.5s 0s ease-out infinite
+}
+
+@media (max-width: 640px) {
+    a#calltrap-btn:hover span {
+        display: none;
+    }
+    .ppocta-ft-fix {width: 100%;}
+    #calltrap-btn.calltrap_offline {
+        margin-bottom: -58px;
+    }
+    #messengerButton {
+        right: 47px;
+        float: right;                                   
+        margin-bottom: 12px;
+    }
+    #zaloButton {
+        float: right;
+        bottom: -26px;
+        right: 46px;
+    }
+}
+
+
+@-webkit-keyframes calltrap_opacity {
+    0% {
+        opacity: 1
+    }
+    57% {
+        opacity: 0.75
+    }
+    75% {
+        opacity: 0.95
+    }
+    100% {
+        opacity: 1
+    }
+}
+
+@-moz-keyframes calltrap_opacity {
+    0% {
+        opacity: 1
+    }
+    57% {
+        opacity: 0.75
+    }
+    75% {
+        opacity: 0.95
+    }
+    100% {
+        opacity: 1
+    }
+}
+
+@-o-keyframes calltrap_opacity {
+    0% {
+        opacity: 1
+    }
+    57% {
+        opacity: 0.75
+    }
+    75% {
+        opacity: 0.95
+    }
+    100% {
+        opacity: 1
+    }
+}
+
+@keyframes calltrap_opacity {
+    0% {
+        opacity: 1
+    }
+    57% {
+        opacity: 0.75
+    }
+    75% {
+        opacity: 0.95
+    }
+    100% {
+        opacity: 1
+    }
+}
+
+@-webkit-keyframes calltrap_spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+    30% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+    33% {
+        -webkit-transform: rotate(-10deg);
+        transform: rotate(-10deg)
+    }
+    36% {
+        -webkit-transform: rotate(10deg);
+        transform: rotate(10deg)
+    }
+    39% {
+        -webkit-transform: rotate(-10deg);
+        transform: rotate(-10deg)
+    }
+    42% {
+        -webkit-transform: rotate(10deg);
+        transform: rotate(10deg)
+    }
+    45% {
+        -webkit-transform: rotate(-10deg);
+        transform: rotate(-10deg)
+    }
+    48% {
+        -webkit-transform: rotate(10deg);
+        transform: rotate(10deg);
+        opacity: 1
+    }
+    51% {
+        -webkit-transform: rotate(-10deg);
+        transform: rotate(-10deg)
+    }
+    54% {
+        -webkit-transform: rotate(10deg);
+        transform: rotate(10deg)
+    }
+    57% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+}
+
+@-moz-keyframes calltrap_spin {
+    0% {
+        -moz-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+    30% {
+        -moz-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+    33% {
+        -moz-transform: rotate(-10deg);
+        transform: rotate(-10deg)
+    }
+    36% {
+        -moz-transform: rotate(10deg);
+        transform: rotate(10deg)
+    }
+    39% {
+        -moz-transform: rotate(-10deg);
+        transform: rotate(-10deg)
+    }
+    42% {
+        -moz-transform: rotate(10deg);
+        transform: rotate(10deg)
+    }
+    45% {
+        -moz-transform: rotate(-10deg);
+        transform: rotate(-10deg)
+    }
+    48% {
+        -moz-transform: rotate(10deg);
+        transform: rotate(10deg);
+        opacity: 1
+    }
+    51% {
+        -moz-transform: rotate(-10deg);
+        transform: rotate(-10deg)
+    }
+    54% {
+        -moz-transform: rotate(10deg);
+        transform: rotate(10deg)
+    }
+    57% {
+        -moz-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+}
+
+@-o-keyframes calltrap_spin {
+    0% {
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+    30% {
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+    33% {
+        -o-transform: rotate(-10deg);
+        transform: rotate(-10deg)
+    }
+    36% {
+        -o-transform: rotate(10deg);
+        transform: rotate(10deg)
+    }
+    39% {
+        -o-transform: rotate(-10deg);
+        transform: rotate(-10deg)
+    }
+    42% {
+        -o-transform: rotate(10deg);
+        transform: rotate(10deg)
+    }
+    45% {
+        -o-transform: rotate(-10deg);
+        transform: rotate(-10deg)
+    }
+    48% {
+        -o-transform: rotate(10deg);
+        transform: rotate(10deg);
+        opacity: 1
+    }
+    51% {
+        -o-transform: rotate(-10deg);
+        transform: rotate(-10deg)
+    }
+    54% {
+        -o-transform: rotate(10deg);
+        transform: rotate(10deg)
+    }
+    57% {
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+}
+
+@keyframes calltrap_spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+    30% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+    33% {
+        -webkit-transform: rotate(-10deg);
+        -moz-transform: rotate(-10deg);
+        -o-transform: rotate(-10deg);
+        transform: rotate(-10deg)
+    }
+    36% {
+        -webkit-transform: rotate(10deg);
+        -moz-transform: rotate(10deg);
+        -o-transform: rotate(10deg);
+        transform: rotate(10deg)
+    }
+    39% {
+        -webkit-transform: rotate(-10deg);
+        -moz-transform: rotate(-10deg);
+        -o-transform: rotate(-10deg);
+        transform: rotate(-10deg)
+    }
+    42% {
+        -webkit-transform: rotate(10deg);
+        -moz-transform: rotate(10deg);
+        -o-transform: rotate(10deg);
+        transform: rotate(10deg)
+    }
+    45% {
+        -webkit-transform: rotate(-10deg);
+        -moz-transform: rotate(-10deg);
+        -o-transform: rotate(-10deg);
+        transform: rotate(-10deg)
+    }
+    48% {
+        -webkit-transform: rotate(10deg);
+        -moz-transform: rotate(10deg);
+        -o-transform: rotate(10deg);
+        transform: rotate(10deg);
+        opacity: 1
+    }
+    51% {
+        -webkit-transform: rotate(-10deg);
+        -moz-transform: rotate(-10deg);
+        -o-transform: rotate(-10deg);
+        transform: rotate(-10deg)
+    }
+    54% {
+        -webkit-transform: rotate(10deg);
+        -moz-transform: rotate(10deg);
+        -o-transform: rotate(10deg);
+        transform: rotate(10deg)
+    }
+    57% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+}
+
+@-webkit-keyframes uptocallmini {
+    0% {
+        -webkit-box-shadow: 0 0 8px 6px rgba(32, 116, 161, 0), 0 0 0px 0px transparent, 0 0 0px 0px rgba(32, 116, 161, 0);
+        box-shadow: 0 0 8px 6px rgba(32, 116, 161, 0), 0 0 0px 0px transparent, 0 0 0px 0px rgba(32, 116, 161, 0)
+    }
+    10% {
+        -webkit-box-shadow: 0 0 8px 6px #2074a1, 0 0 12px 10px transparent, 0 0 12px 14px #2074a1;
+        box-shadow: 0 0 8px 6px #2074a1, 0 0 12px 10px transparent, 0 0 12px 14px #2074a1
+    }
+    100% {
+        -webkit-box-shadow: 0 0 8px 6px rgba(32, 116, 161, 0), 0 0 0px 40px transparent, 0 0 0px 40px rgba(32, 116, 161, 0);
+        box-shadow: 0 0 8px 6px rgba(32, 116, 161, 0), 0 0 0px 40px transparent, 0 0 0px 40px rgba(32, 116, 161, 0)
+    }
+}
+
+@-moz-keyframes uptocallmini {
+    0% {
+        box-shadow: 0 0 8px 6px rgba(32, 116, 161, 0), 0 0 0px 0px transparent, 0 0 0px 0px rgba(32, 116, 161, 0)
+    }
+    10% {
+        box-shadow: 0 0 8px 6px #2074a1, 0 0 12px 10px transparent, 0 0 12px 14px #2074a1
+    }
+    100% {
+        box-shadow: 0 0 8px 6px rgba(32, 116, 161, 0), 0 0 0px 40px transparent, 0 0 0px 40px rgba(32, 116, 161, 0)
+    }
+}
+
+@-o-keyframes uptocallmini {
+    0% {
+        box-shadow: 0 0 8px 6px rgba(32, 116, 161, 0), 0 0 0px 0px transparent, 0 0 0px 0px rgba(32, 116, 161, 0)
+    }
+    10% {
+        box-shadow: 0 0 8px 6px #2074a1, 0 0 12px 10px transparent, 0 0 12px 14px #2074a1
+    }
+    100% {
+        box-shadow: 0 0 8px 6px rgba(32, 116, 161, 0), 0 0 0px 40px transparent, 0 0 0px 40px rgba(32, 116, 161, 0)
+    }
+}
+
+@keyframes uptocallmini {
+    0% {
+        -webkit-box-shadow: 0 0 8px 6px rgba(32, 116, 161, 0), 0 0 0px 0px transparent, 0 0 0px 0px rgba(32, 116, 161, 0);
+        box-shadow: 0 0 8px 6px rgba(32, 116, 161, 0), 0 0 0px 0px transparent, 0 0 0px 0px rgba(32, 116, 161, 0)
+    }
+    10% {
+        -webkit-box-shadow: 0 0 8px 6px #2074a1, 0 0 12px 10px transparent, 0 0 12px 14px #2074a1;
+        box-shadow: 0 0 8px 6px #2074a1, 0 0 12px 10px transparent, 0 0 12px 14px #2074a1
+    }
+    100% {
+        -webkit-box-shadow: 0 0 8px 6px rgba(32, 116, 161, 0), 0 0 0px 40px transparent, 0 0 0px 40px rgba(32, 116, 161, 0);
+        box-shadow: 0 0 8px 6px rgba(32, 116, 161, 0), 0 0 0px 40px transparent, 0 0 0px 40px rgba(32, 116, 161, 0)
+    }
+}
+
+@-webkit-keyframes uptocallmini_offline {
+    0% {
+        -webkit-box-shadow: 0 0 8px 6px rgba(53, 161, 32, 0), 0 0 0px 0px transparent, 0 0 0px 0px rgba(53, 161, 32, 0);
+        box-shadow: 0 0 8px 6px rgba(53, 161, 32, 0), 0 0 0px 0px transparent, 0 0 0px 0px rgba(53, 161, 32, 0)
+    }
+    10% {
+        -webkit-box-shadow: 0 0 8px 6px #35A120, 0 0 12px 10px transparent, 0 0 12px 14px #35A120;
+        box-shadow: 0 0 8px 6px #35A120, 0 0 12px 10px transparent, 0 0 12px 14px #35A120
+    }
+    100% {
+        -webkit-box-shadow: 0 0 8px 6px rgba(53, 161, 32, 0), 0 0 0px 40px transparent, 0 0 0px 40px rgba(53, 161, 32, 0);
+        box-shadow: 0 0 8px 6px rgba(53, 161, 32, 0), 0 0 0px 40px transparent, 0 0 0px 40px rgba(53, 161, 32, 0)
+    }
+}
+
+@-moz-keyframes uptocallmini_offline {
+    0% {
+        box-shadow: 0 0 8px 6px rgba(53, 161, 32, 0), 0 0 0px 0px transparent, 0 0 0px 0px rgba(53, 161, 32, 0)
+    }
+    10% {
+        box-shadow: 0 0 8px 6px #35A120, 0 0 12px 10px transparent, 0 0 12px 14px #35A120
+    }
+    100% {
+        box-shadow: 0 0 8px 6px rgba(53, 161, 32, 0), 0 0 0px 40px transparent, 0 0 0px 40px rgba(53, 161, 32, 0)
+    }
+}
+
+@-o-keyframes uptocallmini_offline {
+    0% {
+        box-shadow: 0 0 8px 6px rgba(53, 161, 32, 0), 0 0 0px 0px transparent, 0 0 0px 0px rgba(53, 161, 32, 0)
+    }
+    10% {
+        box-shadow: 0 0 8px 6px #35A120, 0 0 12px 10px transparent, 0 0 12px 14px #35A120
+    }
+    100% {
+        box-shadow: 0 0 8px 6px rgba(53, 161, 32, 0), 0 0 0px 40px transparent, 0 0 0px 40px rgba(53, 161, 32, 0)
+    }
+}
+
+@keyframes uptocallmini_offline {
+    0% {
+        -webkit-box-shadow: 0 0 8px 6px rgba(53, 161, 32, 0), 0 0 0px 0px transparent, 0 0 0px 0px rgba(53, 161, 32, 0);
+        box-shadow: 0 0 8px 6px rgba(53, 161, 32, 0), 0 0 0px 0px transparent, 0 0 0px 0px rgba(53, 161, 32, 0)
+    }
+    10% {
+        -webkit-box-shadow: 0 0 8px 6px #1CB2ED, 0 0 12px 10px transparent, 0 0 12px 14px #1CB2ED;
+        box-shadow: 0 0 8px 6px #1CB2ED, 0 0 12px 10px transparent, 0 0 12px 14px #1CB2ED
+    }
+    100% {
+        -webkit-box-shadow: 0 0 8px 6px rgba(53, 161, 32, 0), 0 0 0px 40px transparent, 0 0 0px 40px rgba(53, 161, 32, 0);
+        box-shadow: 0 0 8px 6px rgba(53, 161, 32, 0), 0 0 0px 40px transparent, 0 0 0px 40px rgba(53, 161, 32, 0)
+    }
+}

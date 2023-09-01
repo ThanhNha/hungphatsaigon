@@ -1,5 +1,8 @@
 node_modules
 src/wp-content/uploads
-src/wp-content/plugins
+src/wp-content/plugins/*
+!src/wp-content/plugins/atcgroup
+src/wp-content/themes/flatsome-child/site-structure
+
 # src/wp-content/plugins
 # npx tailwindcss -i ./tailwind.css -o ./style.css --watch
