@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Category layout with left sidebar.
  *
@@ -9,20 +10,97 @@
 ?>
 <div class="row category-page-row">
 
-		<div class="col large-3 hide-for-medium <?php flatsome_sidebar_classes(); ?>">
-			<?php flatsome_sticky_column_open( 'category_sticky_sidebar' ); ?>
-			<div id="shop-sidebar" class="sidebar-inner col-inner">
-				<?php
-				  if(is_active_sidebar('shop-sidebar')) {
-				  		dynamic_sidebar('shop-sidebar');
-				  	} else{ echo '<p>You need to assign Widgets to <strong>"Shop Sidebar"</strong> in <a href="'.get_site_url().'/wp-admin/widgets.php">Appearance > Widgets</a> to show anything here</p>';
-				  }
-				?>
-			</div>
-			<?php flatsome_sticky_column_close( 'category_sticky_sidebar' ); ?>
-		</div>
+	<div class="col large-3 hide-for-medium <?php flatsome_sidebar_classes(); ?>">
+		<?php flatsome_sticky_column_open('category_sticky_sidebar'); ?>
+		<?php
+		global $post;
+		$terms = get_the_terms($post->ID, 'product_cat');
+		$category_slug = array();
+		// $category_slug = $terms->slug;
+		foreach ($terms as $term) {
+			$category_slug[] = $term->slug;
+		}
+		var_dump($category_slug);
 
-		<div class="col large-9">
+		$args = array(
+			'post_status' => 'publish',
+			'limit' => -1,
+			'category' => $category_slug,
+			'paginate' => false,
+		);
+
+		$products = wc_get_products($args);
+		$all_prices = array();
+		foreach ($products as $product) {
+			// if ((double)$product->get_sale_price() != 0 || (double)$product->get_price() != 0) {
+			// 	$all_prices[] = (double)$product->get_sale_price() ? (double)$product->get_sale_price() : (double)$product->get_price() ;
+			// }
+			if ((double)$product->get_price() != 0) {
+				$all_prices[] = (double)$product->get_price() ;
+			}
+		}
+		sort($all_prices);
+		var_dump($all_prices);
+		$minPrice = $all_prices[array_key_first($all_prices)];
+		$maxPrice = $all_prices[array_key_last($all_prices)];
+
+		$rangePrice = (roundNumber($maxPrice) - roundNumber($minPrice)) / 10;
+
+		// if ($rangePrice < $minPrice) {
+		// 	$rangePrice =  $minPrice > 1000000 ? roundNumber($minPrice) : 1000000;
+		// }
+		echo 'min=' . $minPrice . ', max=' . $maxPrice . ', range =' . $rangePrice;
+
+		?>
+
+		<div class="loc_gia">
+			<div class="radio">
+				<a href="?min_price=0&max_price=<?php echo $minPrice + $rangePrice; ?>"><input type="radio" name="optradio">Dưới <?php echo convertCurrencyNumber($minPrice + $rangePrice); ?></a>
+			</div>
+			<div class="radio">
+				<a href="?min_price=0&max_price=<?php echo $minPrice + $rangePrice * 2; ?>"><input type="radio" name="optradio">Dưới <?php echo convertCurrencyNumber($minPrice + $rangePrice * 2); ?></a>
+			</div>
+			<div class="radio">
+				<a href="?min_price=0&max_price=<?php echo $minPrice + $rangePrice * 3; ?>"><input type="radio" name="optradio">Dưới
+				<?php echo convertCurrencyNumber($minPrice + $rangePrice * 3); ?></a>
+			</div>
+			<div class="radio">
+				<a href="?min_price=0&max_price=<?php echo $rangePrice * 5; ?>"><input type="radio" name="optradio">Dưới
+				<?php echo convertCurrencyNumber($rangePrice * 5); ?></a>
+			</div>
+			<div class="radio">
+				<a href="?min_price=0&max_price=30000000"><input type="radio" name="optradio">Dưới
+					30 triệu</a>
+			</div>
+			<div class="radio">
+				<a href="?min_price=5000000&max_price=10000000"><input type="radio" name="optradio">Từ
+					5 triệu đến 10 triệu</a>
+			</div>
+			<div class="radio">
+				<a href="?min_price=10000000&max_price=20000000"><input type="radio" name="optradio">Từ 10 triệu
+					đến 20 triệu</a>
+			</div>
+			<div class="radio">
+				<a href="?min_price=20000000&max_price=30000000"><input type="radio" name="optradio">Từ 20 triệu
+					đến 30 triệu</a>
+			</div>
+			<div class="radio">
+				<a href="?min_price=30000000"><input type="radio" name="optradio">Trên 30 triệu</a>
+			</div>
+		</div>
+		<div id="shop-sidebar" class="sidebar-inner col-inner">
+			<?php
+			if (is_active_sidebar('shop-sidebar')) {
+				dynamic_sidebar('shop-sidebar');
+			} else {
+				echo '<p>You need to assign Widgets to <strong>"Shop Sidebar"</strong> in <a href="' . get_site_url() . '/wp-admin/widgets.php">Appearance > Widgets</a> to show anything here</p>';
+			}
+			?>
+		</div>
+		<?php flatsome_sticky_column_close('category_sticky_sidebar'); ?>
+	</div>
+
+	<div class="col large-9">
 		<?php
 		/**
 		 * Hook: woocommerce_before_main_content.
@@ -31,7 +109,7 @@
 		 * @hooked woocommerce_breadcrumb - 20 (FL removed)
 		 * @hooked WC_Structured_Data::generate_website_data() - 30
 		 */
-		do_action( 'woocommerce_before_main_content' );
+		do_action('woocommerce_before_main_content');
 
 		?>
 
@@ -42,12 +120,12 @@
 		 * @hooked woocommerce_taxonomy_archive_description - 10
 		 * @hooked woocommerce_product_archive_description - 10
 		 */
-		do_action( 'woocommerce_archive_description' );
+		do_action('woocommerce_archive_description');
 		?>
 
 		<?php
 
-		if ( woocommerce_product_loop() ) {
+		if (woocommerce_product_loop()) {
 
 			/**
 			 * Hook: woocommerce_before_shop_loop.
@@ -56,12 +134,12 @@
 			 * @hooked woocommerce_result_count - 20 (FL removed)
 			 * @hooked woocommerce_catalog_ordering - 30 (FL removed)
 			 */
-			do_action( 'woocommerce_before_shop_loop' );
+			do_action('woocommerce_before_shop_loop');
 
 			woocommerce_product_loop_start();
 
-			if ( wc_get_loop_prop( 'total' ) ) {
-				while ( have_posts() ) {
+			if (wc_get_loop_prop('total')) {
+				while (have_posts()) {
 					the_post();
 
 					/**
@@ -69,9 +147,9 @@
 					 *
 					 * @hooked WC_Structured_Data::generate_product_data() - 10
 					 */
-					do_action( 'woocommerce_shop_loop' );
+					do_action('woocommerce_shop_loop');
 
-					wc_get_template_part( 'content', 'product' );
+					wc_get_template_part('content', 'product');
 				}
 			}
 
@@ -82,30 +160,30 @@
 			 *
 			 * @hooked woocommerce_pagination - 10
 			 */
-			do_action( 'woocommerce_after_shop_loop' );
+			do_action('woocommerce_after_shop_loop');
 		} else {
 			/**
 			 * Hook: woocommerce_no_products_found.
 			 *
 			 * @hooked wc_no_products_found - 10
 			 */
-			do_action( 'woocommerce_no_products_found' );
+			do_action('woocommerce_no_products_found');
 		}
 		?>
 
 		<?php
-			/**
-			 * Hook: flatsome_products_after.
-			 *
-			 * @hooked flatsome_products_footer_content - 10
-			 */
-			do_action( 'flatsome_products_after' );
-			/**
-			 * Hook: woocommerce_after_main_content.
-			 *
-			 * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
-			 */
-			do_action( 'woocommerce_after_main_content' );
+		/**
+		 * Hook: flatsome_products_after.
+		 *
+		 * @hooked flatsome_products_footer_content - 10
+		 */
+		do_action('flatsome_products_after');
+		/**
+		 * Hook: woocommerce_after_main_content.
+		 *
+		 * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
+		 */
+		do_action('woocommerce_after_main_content');
 		?>
-		</div>
+	</div>
 </div>
