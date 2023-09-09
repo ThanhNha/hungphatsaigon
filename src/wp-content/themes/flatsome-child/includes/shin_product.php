@@ -85,3 +85,4 @@ function  filterPriceProduct()
 }
 
 add_shortcode('filter_price_product', 'filterPriceProduct');
+
