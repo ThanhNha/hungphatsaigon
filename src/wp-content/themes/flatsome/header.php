@@ -13,11 +13,14 @@
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<link rel="profile" href="http://gmpg.org/xfn/11" />
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
+	<link rel="canonical" href="<?php global $wp;echo home_url( $wp->request )?>" />
 
 	<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
+
+
 
 <?php do_action( 'flatsome_after_body_open' ); ?>
 <?php wp_body_open(); ?>

@@ -12,6 +12,7 @@
 		<div class="col large-3 hide-for-medium <?php flatsome_sidebar_classes(); ?>">
 			<?php flatsome_sticky_column_open( 'category_sticky_sidebar' ); ?>
 			<div id="shop-sidebar" class="sidebar-inner col-inner">
+				<?php echo do_shortcode('[filter_price_product]');?>
 				<?php
 				  if(is_active_sidebar('shop-sidebar')) {
 				  		dynamic_sidebar('shop-sidebar');
