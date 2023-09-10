@@ -15,7 +15,12 @@ Version: 3.0
 
 .section-last-modify{
     background: #F0F2F1;
-    padding: 10px 15px;
+    padding: 10px 15px !important;
+    /* margin-bottom: -30px; */
+}
+.section-last-modify .last-modify{
+  display: flex;
+  align-items: center;
 }
 
 /*************** ADD CUSTOM CSS HERE.   ***************/
