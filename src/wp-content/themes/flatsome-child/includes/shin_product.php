@@ -92,3 +92,15 @@ function  filterPriceProduct()
 }
 
 add_shortcode('filter_price_product', 'filterPriceProduct');
+
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_title', 5 );
+
+function woocommerce_add_custom_text_after_product_title(){
+?>
+    <div class="product-title product_title entry-title"><?php woocommerce_template_single_title(); ?> </div>
+    <?php  global $product; if ($product->get_sku()) :?>
+	<div class="text-sku"><strong>SKU: </strong><?php echo $product->get_sku(); ?></div>
+  <?php endif;?>
+<?php
+}
+add_action( 'woocommerce_single_product_summary', 'woocommerce_add_custom_text_after_product_title', 5);
