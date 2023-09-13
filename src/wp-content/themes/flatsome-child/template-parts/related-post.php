@@ -53,8 +53,7 @@ $category_ids = array(); ?>
                     </div>
                   </div>
                   <div class="box-text text-center">
-                    <div class="box-text-inner blog-post-inner">
-
+                    <div class="box-text-innerblog-post-inner">
 
                       <h4 class="post-title is-large ">
                         <a href="<?php echo get_the_permalink(); ?>" class="plain"><?php echo get_the_title(); ?></a>

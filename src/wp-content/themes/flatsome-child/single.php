@@ -231,6 +231,7 @@ get_header();
         <?php get_template_part('template-parts/posts/layout', get_theme_mod('blog_post_layout', 'right-sidebar')); ?>
         <?php get_template_part('template-parts/single-last', 'modify') ?>
         <?php get_template_part('template-parts/related', 'post') ?>
+        <?php get_template_part('template-parts/related', 'author') ?>
 
     <?php endif; ?>
 </div>
