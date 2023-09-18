@@ -61,7 +61,7 @@ $max_num_pages = $posts->max_num_pages;
       <?php endif; ?>
 
     </div>
-    <div class="row">
+    <div class="row align-center">
       <?php pagination_post_author($max_num_pages); ?>
     </div>
   </div>
