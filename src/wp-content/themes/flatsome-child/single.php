@@ -228,9 +228,16 @@ get_header();
                 </div>
             </div>
         </div>
-        <?php if(!isset($_GET['page']) && is_single()): ?>
-        <?php get_template_part('template-parts/posts/layout', get_theme_mod('blog_post_layout', 'right-sidebar')); ?>
-        <?php endif;?>
+        <?php
+        global $wp;
+        $parts = parse_url($wp->request);
+        $path = $parts['path'];
+        $segments = explode('/', trim($path, '/'));
+        $post_type = get_post_type(get_the_ID());
+
+        if (!in_array('page', $segments) && $post_type === 'tac-gia') : ?>
+            <?php get_template_part('template-parts/posts/layout', get_theme_mod('blog_post_layout', 'right-sidebar')); ?>
+        <?php endif; ?>
         <?php get_template_part('template-parts/single-last', 'modify') ?>
         <?php get_template_part('template-parts/related', 'post') ?>
         <?php get_template_part('template-parts/related', 'author') ?>
