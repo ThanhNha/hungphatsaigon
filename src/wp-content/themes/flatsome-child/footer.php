@@ -13,7 +13,7 @@ if (is_shop() || is_product_category()) : ?>
 
 global $flatsome_opt;
 ?>
-<?php if ( !is_page(49107) && !is_single() && !is_product_category() ) : ?>
+<?php if ( !is_page(49107) && !is_single() && !is_product_category() && !is_search() ) : ?>
     <div class="row">
         <div class="col large-12 last-modify">
             <i class="fa fa-calendar div_inline mr_5 ml_15" aria-hidden="true"></i>

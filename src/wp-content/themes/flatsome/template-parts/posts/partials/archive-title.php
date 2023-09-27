@@ -23,7 +23,7 @@
 					printf( __( 'Tag Archives: %s', 'flatsome' ), '<span>' . single_tag_title( '', false ) . '</span>' );
 
 				elseif ( is_search() ) :
-					printf( __( 'Search Results for: %s', 'flatsome' ), '<span>' . get_search_query() . '</span>' );
+					printf( __( 'Kết Quả Tìm Kiếm: %s', 'flatsome' ), '<span>' . get_search_query() . '</span>' );
 
 				elseif ( is_author() ) :
 				/* Queue the first post, that way we know

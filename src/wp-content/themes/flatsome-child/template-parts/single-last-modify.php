@@ -1,5 +1,13 @@
 <div class="row section-last-modify">
-  <div class="large-4 last-modify"><i class="fa fa-calendar div_inline mr_5 ml_15" aria-hidden="true"></i> <span class="hidden-xs">Cập nhật lần cuối:</span> <?php echo  get_the_modified_date('H:s d/m/Y'); ?></div>
+  <?php if (!is_search()) : ?>
+    <div class="large-4 last-modify">
+      <i class="fa fa-calendar div_inline mr_5 ml_15" aria-hidden="true"></i>
+      <span class="hidden-xs">Cập nhật lần cuối:</span>
+      <?php echo  get_the_modified_date('H:s d/m/Y'); ?>
+    </div>
+  <?php endif; ?>
+
+
   <div class="large-4">
     <?php echo kk_star_ratings(); ?>
   </div>

@@ -61,6 +61,7 @@
 		</div>
 		</div>
 		<div class="product-footer">
+			<h2>Mô tả chi tiết</h2>
 			<?php
 					/**
 					 * woocommerce_after_single_product_summary hook

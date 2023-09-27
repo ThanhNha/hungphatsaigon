@@ -235,7 +235,7 @@ get_header();
         $segments = explode('/', trim($path, '/'));
         $post_type = get_post_type(get_the_ID());
 
-        if (!in_array('page', $segments) && $post_type === 'tac-gia') : ?>
+        if (!in_array('page', $segments) || !$post_type === 'tac-gia') : ?>
             <?php get_template_part('template-parts/posts/layout', get_theme_mod('blog_post_layout', 'right-sidebar')); ?>
         <?php endif; ?>
         <?php get_template_part('template-parts/single-last', 'modify') ?>
