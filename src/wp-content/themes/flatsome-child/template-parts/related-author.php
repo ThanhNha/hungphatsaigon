@@ -12,7 +12,7 @@ $args = array(
   'meta_key'      => 'tacgia',
   'meta_value'    => $id,
   'orderby'          => 'date',
-  'order'            => 'ASC',
+  'order'            => 'DESC',
   'include'          => array(),
   'exclude'          => array(),
   'posts_per_page' => '10',
@@ -26,9 +26,10 @@ $max_num_pages = $posts->max_num_pages;
 
 <section class="section related-author">
   <div class="section-content relative">
-    <div class="row">
-      <h3 class="title">BÀI VIẾT LIÊN QUAN</h3>
-
+    <div class="row is-title-author">
+      <div class="col">
+        <h2 class="title">BÀI VIẾT LIÊN QUAN</h2>
+      </div>
     </div>
 
     <div class="row">
@@ -40,16 +41,16 @@ $max_num_pages = $posts->max_num_pages;
             <div class="col-inner">
               <div class="row box box-bounce box-text-bottom box-blog-post has-hover">
                 <div class="box-image col medium-5 large-3">
-                  <div class="image-cover" style="padding-top:75%;">
+                  <div class="image-cover" style="padding-top:52%;">
                     <a href="<?php echo get_the_permalink(); ?>" class="plain" aria-label="<?php echo get_the_title(); ?>">
                       <img width="300" height="158" src="<?php echo get_the_post_thumbnail_url(); ?>" class="attachment-medium size-medium wp-post-image" alt="<?php echo get_the_title(); ?>" decoding="async" loading="lazy" sizes="(max-width: 300px) 100vw, 300px"> </a>
                   </div>
                 </div>
                 <div class="box-text col medium-7 large-9">
                   <div class="box-text-inner blog-post-inner">
-                    <h4 class="post-title is-large ">
+                    <h3 class="post-title is-large ">
                       <a href="<?php echo get_the_permalink(); ?>" class="plain"><?php echo get_the_title(); ?></a>
-                    </h4>
+                    </h3>
                     <p class="from_the_blog_excerpt "><?php echo get_the_excerpt(); ?></p>
                   </div>
                 </div>
@@ -82,11 +83,9 @@ function pagination_post_author($max_num_pages = 0)
 
   if ($paged >= 3) {
     $links[] = $paged - 1;
-    $links[] = $paged - 2;
   }
 
   if (($paged + 2) <= $max_num_pages) {
-    $links[] = $paged + 2;
     $links[] = $paged + 1;
   }
 ?>
@@ -127,7 +126,7 @@ function pagination_post_author($max_num_pages = 0)
       }
       ?>
       <?php if ($paged < $max_num_pages) : ?>
-        <li class="item_k"><a href="<?php echo esc_url(get_pagenum_link($paged + 1),false); ?>"><i class="icon-angle-right"><span class="screen-reader-text hidden">prev</span></i></a></li>
+        <li class="item_k"><a href="<?php echo esc_url(get_pagenum_link($paged + 1)); ?>"><i class="icon-angle-right"><span class="screen-reader-text hidden">prev</span></i></a></li>
       <?php endif; ?>
     </ul>
   </nav>

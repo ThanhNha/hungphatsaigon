@@ -19,7 +19,7 @@ if ( have_posts() ) : ?>
 				get_template_part('template-parts/posts/partials/entry-header', flatsome_option('blog_posts_header_style') );
 			}
 		?>
-		<?php  get_template_part( 'template-parts/posts/content', 'single' ); ?>
+		<?php get_template_part( 'template-parts/posts/content', 'single' ); ?>
 	</div>
 </article>
 

@@ -94,14 +94,14 @@ function flatsome_render_ux_menu_link_shortcode( $atts, $content, $tag ) {
 	ob_start();
 
 	?>
-	<div class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>">
+	<h4 class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>">
 		<a class="ux-menu-link__link flex" href="<?php echo esc_url( $link ); ?>" <?php echo flatsome_parse_target_rel( $link_atts, true ); ?>>
 			<?php echo $icon; ?>
 			<span class="ux-menu-link__text">
 				<?php echo esc_html( $atts['text'] ); ?>
 			</span>
 		</a>
-	</div>
+	</h4>
 	<?php
 
 	return ob_get_clean();

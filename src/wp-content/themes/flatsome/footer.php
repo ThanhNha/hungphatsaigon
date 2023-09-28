@@ -6,7 +6,7 @@
  * @flatsome-version 3.16.0
  */
  if(is_shop() || is_product_category()): ?>
-    <?php echo do_shortcode('[recently_viewed_products][block id="danh-muc-noi-bat"]'); ?>
+    <?php echo do_shortcode('[woocommerce_recently_viewed_products][block id="danh-muc-noi-bat"]'); ?>
 <?php endif;
 
 

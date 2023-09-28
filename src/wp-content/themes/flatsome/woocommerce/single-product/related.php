@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Related Products
  *
@@ -17,65 +16,60 @@
  * @flatsome-version 3.16.0
  */
 
-if (!defined('ABSPATH')) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 // Get Type.
-$type             = get_theme_mod('related_products', 'slider');
+$type             = get_theme_mod( 'related_products', 'slider' );
 $repeater_classes = array();
 
-if ($type == 'hidden') return;
-if ($type == 'grid') $type = 'row';
+if ( $type == 'hidden' ) return;
+if ( $type == 'grid' ) $type = 'row';
 
-if (get_theme_mod('category_force_image_height')) $repeater_classes[] = 'has-equal-box-heights';
-if (get_theme_mod('equalize_product_box')) $repeater_classes[] = 'equalize-box';
+ if ( get_theme_mod('category_force_image_height' ) ) $repeater_classes[] = 'has-equal-box-heights';
+ if ( get_theme_mod('equalize_product_box' ) ) $repeater_classes[] = 'equalize-box';
 
 $repeater['type']         = $type;
-$repeater['columns']      = get_theme_mod('related_products_pr_row', 4);
-$repeater['columns__md']  = get_theme_mod('related_products_pr_row_tablet', 3);
-$repeater['columns__sm']  = get_theme_mod('related_products_pr_row_mobile', 2);
-$repeater['class']        = implode(' ', $repeater_classes);
+$repeater['columns']      = get_theme_mod( 'related_products_pr_row', 4 );
+$repeater['columns__md']  = get_theme_mod( 'related_products_pr_row_tablet', 3 );
+$repeater['columns__sm']  = get_theme_mod( 'related_products_pr_row_mobile', 2 );
+$repeater['class']        = implode( ' ', $repeater_classes );
 $repeater['slider_style'] = 'reveal';
 $repeater['row_spacing']  = 'small';
 
 
-if ($related_products) : ?>
-	<div class="row content-row row-divided row-large row-reverse">
-		<div class="col">
-			<div class=" related related-products-wrapper product-section">
+if ( $related_products ) : ?>
 
-				<?php
-				$heading = apply_filters('woocommerce_product_related_products_heading', __('Related products', 'woocommerce'));
+	<div class="related related-products-wrapper product-section">
 
-				if ($heading) :
-				?>
-					<h2 class="product-section-title container-width product-section-title-related pt-half pb-half uppercase">
-						<?php echo esc_html($heading); ?>
-					</h2>
-				<?php endif; ?>
+		<?php
+		$heading = apply_filters( 'woocommerce_product_related_products_heading', __( 'Related products', 'woocommerce' ) );
+
+		if ( $heading ) :
+			?>
+			<h2 class="product-section-title container-width product-section-title-related pt-half pb-half uppercase">
+				<?php echo esc_html( $heading ); ?>
+			</h2>
+		<?php endif; ?>
 
 
-				<?php get_flatsome_repeater_start($repeater); ?>
+	<?php get_flatsome_repeater_start( $repeater ); ?>
 
-				<?php foreach ($related_products as $related_product) :
-					$post_object = get_post($related_product->get_id());
+		<?php foreach ( $related_products as $related_product ) :
+			$post_object = get_post( $related_product->get_id() );
 
-					setup_postdata($GLOBALS['post'] = &$post_object); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
+			setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
 
-					wc_get_template_part('content', 'product');
-				endforeach;
-				?>
+			wc_get_template_part( 'content', 'product' );
+		endforeach;
+		?>
 
-				<?php get_flatsome_repeater_end($repeater); ?>
-
-			</div>
-		</div>
+		<?php get_flatsome_repeater_end( $repeater ); ?>
 
 	</div>
 
-
-<?php
+	<?php
 endif;
 
 wp_reset_postdata();

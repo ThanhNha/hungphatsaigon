@@ -3,6 +3,9 @@ src/wp-content/uploads
 src/wp-content/plugins/*
 !src/wp-content/plugins/atcgroup
 src/wp-content/themes/flatsome-child/site-structure
-
+.env
+Dockerfile
+docker-compose.yml
+package.json
 # src/wp-content/plugins
 # npx tailwindcss -i ./tailwind.css -o ./style.css --watch

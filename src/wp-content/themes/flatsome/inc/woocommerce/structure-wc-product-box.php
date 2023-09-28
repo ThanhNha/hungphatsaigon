@@ -80,6 +80,7 @@ if ( ! function_exists( 'woocommerce_template_loop_product_title' ) ) {
 	 * Fix WooCommerce Loop Title
 	 */
 	function woocommerce_template_loop_product_title() {
+		// hp add code
 		echo '<h3 class="name product-title ' . esc_attr( apply_filters( 'woocommerce_product_loop_title_classes', 'woocommerce-loop-product__title' ) ) . '">';
 		woocommerce_template_loop_product_link_open();
 		echo get_the_title();  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

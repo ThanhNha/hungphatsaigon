@@ -31,7 +31,7 @@ $review_count = $product->get_review_count();
 
 echo flatsome_get_rating_html( $product->get_average_rating() ); // phpcs:ignore WordPress.Security.EscapeOutput
 
-if ( $rating_count > 0 ) :
+if ( $rating_count >= 0 ) :
 	if ( get_theme_mod( 'product_box_review_count' ) ) :
 		if ( comments_open() ) :
 			echo apply_filters( 'flatsome_loop_review_count_html', '<span class="review-count is-small op-7">(' . esc_html( $review_count ) . ')</span>', $product ); // phpcs:ignore WordPress.Security.EscapeOutput

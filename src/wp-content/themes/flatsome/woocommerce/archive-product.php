@@ -1,4 +1,5 @@
 <?php
+add_filter( 'rank_math/frontend/breadcrumb/is_using_shop_base', '__return_false' ); // remove shop breakcrum
 /**
  * The Template for displaying product archives, including the main shop page which is a post type archive
  *
