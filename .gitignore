@@ -7,5 +7,7 @@ src/wp-content/themes/flatsome-child/site-structure
 Dockerfile
 docker-compose.yml
 package.json
+.env.sample
+gulpfile.js
 # src/wp-content/plugins
 # npx tailwindcss -i ./tailwind.css -o ./style.css --watch
