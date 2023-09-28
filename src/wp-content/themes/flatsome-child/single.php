@@ -228,10 +228,10 @@ get_header();
         $path = $parts['path'];
         $segments = explode('/', trim($path, '/'));
         $post_type = get_post_type(get_the_ID());
-        // var_dump($segments);
         if (in_array('page', $segments) && $post_type === 'tac-gia') :
             get_template_part('template-parts/related', 'author');
         endif;
+        
         get_template_part('template-parts/posts/layout', get_theme_mod('blog_post_layout', 'right-sidebar'));
     endif; ?>
 </div>
