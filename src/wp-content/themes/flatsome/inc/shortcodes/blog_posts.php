@@ -215,7 +215,7 @@ function shortcode_latest_from_blog($atts, $content = null, $tag = '')
 	get_flatsome_repeater_start($repeater);
 
 
-	if (is_tax('cattacgia') || is_tax('listkhuyenmai')) :
+	if (is_tax('cattacgia') || is_tax('listkhuyenmai') || is_tax('listkhaitruong') || is_tax('listjob')) :
 
 		// while ( $recentPosts->have_posts() ) : $recentPosts->the_post();
 		while (have_posts()) : the_post(); //hpadd - show all post
