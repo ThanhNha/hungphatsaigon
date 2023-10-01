@@ -2,71 +2,128 @@
 global $post;
 
 $current_post = $post->ID;
+
 $args = array(
   'post_type'      => 'job',
   'post_status'    => 'publish',
-  'numberposts' => -1,
-  'exclude' => array($current_post),
+  'orderby'          => 'date',
+  'order'            => 'DESC',
+  'include'          => array(),
+  'post__not_in'          => array($current_post),
+  'posts_per_page' => '10',
+  'paged' => (get_query_var('paged') ? get_query_var('paged') : 1),
 );
-$post_list = get_posts($args);
+$posts = new WP_Query($args);
+
+$max_num_pages = $posts->max_num_pages;
 
 ?>
 
-<?php if ($post_list) : ?>
-
-  <div class="related-posts row" style="margin-top:20px">
-
-    <h3 class="title">Bài viết liên quan</h3>
-
-    <div class="row row-small large-columns-3 medium-columns-3 small-columns-1 slider row-slider slider-nav-simple slider-nav-outside slider-nav-push has-block is-draggable flickity-enabled tooltipstered" data-flickity-options='{
-    "imagesLoaded": true,
-    "groupCells":"100%",
-    "dragThreshold": 5,
-    "cellAlign": "left",
-    "wrapAround": true,
-    "prevNextButtons": true,
-    "percentPosition": true,
-    "pageDots": false,
-    "rightToLeft": false,
-    "autoPlay": false}' tabindex="0">
-
-      <?php foreach ($post_list as $post) : ?>
-
-        <div class="col post-item">
-          <div class="col-inner">
-            <div class="box box-bounce box-text-bottom box-blog-post has-hover">
-              <div class="box-image">
-                <div class="image-cover" style="padding-top:52%;">
-                  <a href="<?php echo get_the_permalink(); ?>" class="plain" aria-label="<?php echo get_the_title(); ?>">
-                    <img width="800" height="120" src="<?php echo get_the_post_thumbnail_url(); ?>" class="attachment-medium size-medium wp-post-image" alt="<?php echo get_the_title(); ?>" decoding="async" loading="lazy" sizes="(max-width: 800px) 100vw, 800px"> </a>
-                </div>
-              </div>
-              <div class="box-text text-left">
-                <div class="box-text-inner blog-post-inner">
-
-
-                  <h4 class="post-title is-large ">
-                    <a href="<?php echo get_the_permalink(); ?>" class="plain"><?php echo get_the_title(); ?></a>
-                  </h4>
-                  <div class="post-meta-date"><i class="far fa-calendar"></i> <?php echo get_the_date(); ?></div>
-                  <div class="is-divider"></div>
-                  <p class="from_the_blog_excerpt">
-                    <?php
-                    $the_excerpt  = get_the_excerpt();
-                    $excerpt_more = apply_filters('excerpt_more', ' [...]');
-                    echo flatsome_string_limit_words($the_excerpt, 15) . $excerpt_more;
-                    ?>
-                  </p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      <?php endforeach; ?>
-
+<section class="section related-author">
+  <div class="section-content relative">
+    <div class="row is-title-author">
+      <div class="col">
+        <h2 class="title">BÀI VIẾT LIÊN QUAN</h2>
+      </div>
     </div>
 
-  </div>
+    <div class="row">
+      <?php
+      if ($posts->have_posts()) : ?>
+        <?php while ($posts->have_posts()) : $posts->the_post(); ?>
 
-<?php endif; ?>
+          <div class="col post-item">
+            <div class="col-inner">
+              <div class="row box box-bounce box-text-bottom box-blog-post has-hover">
+                <div class="box-image col medium-5 large-3">
+                  <div class="image-cover" style="padding-top:52%;">
+                    <a href="<?php echo get_the_permalink(); ?>" class="plain" aria-label="<?php echo get_the_title(); ?>">
+                      <img width="300" height="158" src="<?php echo get_the_post_thumbnail_url(); ?>" class="attachment-medium size-medium wp-post-image" alt="<?php echo get_the_title(); ?>" decoding="async" loading="lazy" sizes="(max-width: 300px) 100vw, 300px"> </a>
+                  </div>
+                </div>
+                <div class="box-text col medium-7 large-9">
+                  <div class="box-text-inner blog-post-inner">
+                    <h3 class="post-title is-large ">
+                      <a href="<?php echo get_the_permalink(); ?>" class="plain"><?php echo get_the_title(); ?></a>
+                    </h3>
+                    <p class="from_the_blog_excerpt "><?php echo get_the_excerpt(); ?></p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        <?php endwhile; ?>
+      <?php endif; ?>
+
+    </div>
+    <div class="row align-center">
+      <?php pagination_post_job($max_num_pages); ?>
+    </div>
+  </div>
+</section>
+
+
+<?php
+function pagination_post_job($max_num_pages = 0)
+
+{
+
+  if ($max_num_pages <= 1)
+    return;
+  $paged = get_query_var('paged') ? absint(get_query_var('paged')) : 1;
+
+  if ($paged >= 1)
+    $links[] = $paged;
+
+  if ($paged >= 3) {
+    $links[] = $paged - 1;
+  }
+
+  if (($paged + 2) <= $max_num_pages) {
+    $links[] = $paged + 1;
+  }
+?>
+  <nav class="woocommerce-pagination">
+    <ul class="page-numbers nav-pagination links text-center">
+      <?php if ($paged > 1) : ?>
+        <li class="item_k"><a href="<?php echo esc_url(get_pagenum_link($paged - 1),false); ?>"><i class="icon-angle-left"><span class="screen-reader-text hidden">prev</span></i></a></li>
+      <?php endif; ?>
+      <?php if (get_previous_posts_link()) : ?>
+        <li><?php echo  get_previous_posts_link(); ?></li>
+      <?php endif; ?>
+      <?php if (!in_array(1, $links)) : ?>
+        <?php $class = 1 == $paged ? 'page-numbers current' : ''; ?>
+
+        <li><a class="<?php echo $class; ?>" href=" <?php echo esc_url(get_pagenum_link(1,false)) ?>">1
+          </a></li>
+      <?php endif; ?>
+
+      <?php
+
+      sort($links);
+      foreach ((array) $links as $link) {
+        $class = $paged == $link ? 'page-numbers current' : '';
+        printf('<li><a class="%s" href="%s">%s</a></li>' . "\n", $class, esc_url(get_pagenum_link($link,false)), $link);
+      }
+      ?>
+      <?php if (get_next_posts_link()) : ?>
+
+        <li class="item_k">
+          <?php echo get_next_posts_link(); ?>
+        </li>
+      <?php endif; ?>
+      <?php
+      if (!in_array($max_num_pages, $links)) {
+        if (!in_array($max_num_pages - 1, $links))
+          $class = $paged == $max_num_pages ? ' class="page-numbers current"' : '';
+        printf('<li class="%s"><a href="%s">%s</a></li>' . "\n", $class, esc_url(get_pagenum_link($max_num_pages,false)), $max_num_pages);
+      }
+      ?>
+      <?php if ($paged < $max_num_pages) : ?>
+        <li class="item_k"><a href="<?php echo esc_url(get_pagenum_link($paged + 1)); ?>"><i class="icon-angle-right"><span class="screen-reader-text hidden">prev</span></i></a></li>
+      <?php endif; ?>
+    </ul>
+  </nav>
+<?php
+}

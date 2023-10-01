@@ -30,8 +30,9 @@
 	global $post;
 
 	$current_post = $post->ID;
+	get_template_part('template-parts/related', 'author')  ?>
 
-	if (get_post_type($current_post) === 'khuyenmai') : ?>
+	<?php if (get_post_type($current_post) === 'khuyenmai') : ?>
 		<?php get_template_part('template-parts/related', 'promotion')  ?>
 	<?php endif; ?>
 	<?php if (get_post_type($current_post) === 'khaitruong') : ?>
