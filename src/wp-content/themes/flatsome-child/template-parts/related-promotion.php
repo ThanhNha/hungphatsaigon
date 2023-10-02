@@ -13,9 +13,9 @@ $args = array(
   'posts_per_page' => '10',
   'paged' => (get_query_var('paged') ? get_query_var('paged') : 1),
 );
-$posts = new WP_Query($args);
+$posts_promotion = new WP_Query($args);
 
-$max_num_pages = $posts->max_num_pages;
+$max_num_pages = $posts_promotion->max_num_pages;
 
 ?>
 
@@ -29,8 +29,8 @@ $max_num_pages = $posts->max_num_pages;
 
     <div class="row">
       <?php
-      if ($posts->have_posts()) : ?>
-        <?php while ($posts->have_posts()) : $posts->the_post(); ?>
+      if ($posts_promotion->have_posts()) : ?>
+        <?php while ($posts_promotion->have_posts()) : $posts_promotion->the_post(); ?>
 
           <div class="col post-item">
             <div class="col-inner">

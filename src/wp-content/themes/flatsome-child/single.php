@@ -231,7 +231,6 @@ get_header();
         if (in_array('page', $segments) && $post_type === 'tac-gia') :
             get_template_part('template-parts/related', 'author');
         endif;
-        
         get_template_part('template-parts/posts/layout', get_theme_mod('blog_post_layout', 'right-sidebar'));
     endif; ?>
 </div>

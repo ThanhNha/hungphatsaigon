@@ -30,8 +30,10 @@
 	global $post;
 
 	$current_post = $post->ID;
-	get_template_part('template-parts/related', 'author')  ?>
-
+	?>
+	<?php if (get_post_type($current_post) === 'tac-gia') : ?>
+		<?php get_template_part('template-parts/related', 'author')  ?>
+	<?php endif; ?>
 	<?php if (get_post_type($current_post) === 'khuyenmai') : ?>
 		<?php get_template_part('template-parts/related', 'promotion')  ?>
 	<?php endif; ?>
@@ -88,5 +90,5 @@
 <?php endif; ?>
 
 <?php if (get_theme_mod('blog_single_next_prev_nav', 1)) :
-//flatsome_content_nav( 'nav-below' );
+// flatsome_content_nav( 'nav-below' );
 endif; ?>
