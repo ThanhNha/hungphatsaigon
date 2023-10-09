@@ -255,7 +255,7 @@ function flatsome_pages_in_search_results(){
       wp_reset_query();
 
 		if ( ! empty( $posts ) ) {
-			echo '<hr/><h4 class="uppercase">' . esc_html__( 'Posts found', 'flatsome' ) . '</h4>';
+			echo '<hr/><h2 class="uppercase">' . esc_html__( 'KIẾN THỨC NỘI THẤT', 'flatsome' ) . '</h2>';
 			echo flatsome_apply_shortcode( 'blog_posts', array(
 				'columns'      => '3',
 				'columns__md'  => '3',
@@ -268,7 +268,7 @@ function flatsome_pages_in_search_results(){
 		}
 
 		if ( ! empty( $pages ) ) {
-			echo '<hr/><h4 class="uppercase">' . esc_html__( 'Pages found', 'flatsome' ) . '</h4>';
+			echo '<hr/><h2 class="uppercase">' . esc_html__( 'CHUYÊN TRANG', 'flatsome' ) . '</h2>';
 			echo flatsome_apply_shortcode( 'ux_pages', array(
 				'columns'      => '3',
 				'columns__md'  => '3',
@@ -276,6 +276,50 @@ function flatsome_pages_in_search_results(){
 				'type'         => get_theme_mod( 'search_result_style', 'slider' ),
 				'image_height' => '56.25%',
 				'ids'          => implode( ',', $pages ),
+			) );
+		}
+
+		query_posts( array( 'post_type' => array( 'khaitruong'), 's' => get_search_query() ) );
+
+		$posts_grandprix = array();
+		while ( have_posts() ) : the_post();
+			array_push($posts_grandprix, $post->ID);
+		endwhile;
+
+		wp_reset_query();
+
+		echo '<hr/><h2 class="uppercase">' . esc_html__( 'KHAI TRƯƠNG', 'flatsome' ) . '</h2>';
+		if ( ! empty( $posts_grandprix ) ) {
+			echo flatsome_apply_shortcode( 'blog_posts', array(
+				'columns'      => '3',
+				'columns__md'  => '3',
+				'columns__sm'  => '2',
+				'type'         => get_theme_mod( 'search_result_style', 'slider' ),
+				'image_height' => '56.25%',
+				'show_date'    => get_theme_mod( 'blog_badge', 1 ) ? 'true' : 'false',
+				'ids'          => implode( ',', $posts_grandprix ),
+			) );
+		}
+
+		query_posts( array( 'post_type' => array( 'khuyenmai'), 's' => get_search_query() ) );
+
+		$posts_promotion = array();
+		while ( have_posts() ) : the_post();
+			array_push($posts_promotion, $post->ID);
+		endwhile;
+
+		wp_reset_query();
+
+		echo '<hr/><h2 class="uppercase">' . esc_html__( 'KHUYẾN MÃI', 'flatsome' ) . '</h2>';
+		if ( ! empty( $posts_promotion ) ) {
+			echo flatsome_apply_shortcode( 'blog_posts', array(
+				'columns'      => '3',
+				'columns__md'  => '3',
+				'columns__sm'  => '2',
+				'type'         => get_theme_mod( 'search_result_style', 'slider' ),
+				'image_height' => '56.25%',
+				'show_date'    => get_theme_mod( 'blog_badge', 1 ) ? 'true' : 'false',
+				'ids'          => implode( ',', $posts_promotion ),
 			) );
 		}
 		?>

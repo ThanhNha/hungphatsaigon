@@ -392,7 +392,7 @@ function shortcode_latest_from_blog($atts, $content = null, $tag = '')
 										?>
 									</p>
 								<?php } ?>
-								<?php if (is_front_page()) : ?>
+								<?php if (is_front_page() || is_search()) : ?>
 									<h3 class="post-title is-<?php echo $title_size; ?> <?php echo $title_style; ?>">
 										<a href="<?php the_permalink() ?>" class="plain"><?php the_title(); ?></a>
 									</h3>

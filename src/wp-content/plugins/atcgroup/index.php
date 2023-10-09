@@ -169,15 +169,27 @@ add_action('woocommerce_archive_description', 'woocommerce_category_tag_h1', 2);
 function woocommerce_category_tag_h1()
 {
     $product_cat_object = get_queried_object(); ?>
-    <h1 class="product_cat">
-        <?php
-        if (get_field('tag_h1', 'product_cat_' . $product_cat_object->term_id)) {
-            the_field('tag_h1', 'product_cat_' . $product_cat_object->term_id);
-        } else {
-            echo $product_cat_object->name;
-        } ?>
-        <!--  -->
-    </h1>
+    <?php if (is_search()) : ?>
+        <h2 class="product_cat">
+            <?php
+            if (get_field('tag_h1', 'product_cat_' . $product_cat_object->term_id)) {
+                the_field('tag_h1', 'product_cat_' . $product_cat_object->term_id);
+            } else {
+                echo $product_cat_object->name;
+            } ?>
+            <!--  -->
+        </h2>
+    <?php else : ?>
+        <h1 class="product_cat">
+            <?php
+            if (get_field('tag_h1', 'product_cat_' . $product_cat_object->term_id)) {
+                the_field('tag_h1', 'product_cat_' . $product_cat_object->term_id);
+            } else {
+                echo $product_cat_object->name;
+            } ?>
+            <!--  -->
+        </h1>
+    <?php endif; ?>
 <? }
 
 
