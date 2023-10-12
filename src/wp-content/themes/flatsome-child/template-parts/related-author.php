@@ -1,5 +1,6 @@
 <?php
 $post_type = get_post_type(get_the_ID());
+$post_type_id = get_the_ID();
 
 if (!isset($post_type) || $post_type != 'tac-gia') {
   return;
@@ -63,14 +64,14 @@ $max_num_pages = $posts_author->max_num_pages;
 
     </div>
     <div class="row align-center">
-      <?php pagination_post_author($max_num_pages); ?>
+      <?php pagination_post_author($max_num_pages,$post_type_id); ?>
     </div>
   </div>
 </section>
 
 
 <?php
-function pagination_post_author($max_num_pages = 0)
+function pagination_post_author($max_num_pages = 0,$post_type_id)
 
 {
 
@@ -99,14 +100,14 @@ function pagination_post_author($max_num_pages = 0)
       <?php endif; ?>
       <?php if (!in_array(1, $links)) : ?>
         <?php $class = 1 == $paged ? 'page-numbers current' : ''; ?>
-
-        <li><a class="<?php echo $class; ?>" href=" <?php echo esc_url(get_pagenum_link(1,false)) ?>">1
+        <li><a class="<?php echo $class; ?>" href="<?php echo esc_url(get_permalink($post_type_id)) ?>">1
           </a></li>
       <?php endif; ?>
 
       <?php
 
       sort($links);
+      // here
       foreach ((array) $links as $link) {
         $class = $paged == $link ? 'page-numbers current' : '';
         printf('<li><a class="%s" href="%s">%s</a></li>' . "\n", $class, esc_url(get_pagenum_link($link,false)), $link);
