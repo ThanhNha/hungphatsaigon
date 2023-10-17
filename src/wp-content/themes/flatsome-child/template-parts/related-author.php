@@ -64,14 +64,14 @@ $max_num_pages = $posts_author->max_num_pages;
 
     </div>
     <div class="row align-center">
-      <?php pagination_post_author($max_num_pages,$post_type_id); ?>
+      <?php pagination_post_author($max_num_pages, $post_type_id); ?>
     </div>
   </div>
 </section>
 
 
 <?php
-function pagination_post_author($max_num_pages = 0,$post_type_id)
+function pagination_post_author($max_num_pages = 0, $post_type_id)
 
 {
 
@@ -92,8 +92,11 @@ function pagination_post_author($max_num_pages = 0,$post_type_id)
 ?>
   <nav class="woocommerce-pagination">
     <ul class="page-numbers nav-pagination links text-center">
-      <?php if ($paged > 1) : ?>
-        <li class="item_k"><a href="<?php echo esc_url(get_pagenum_link($paged - 1),false); ?>"><i class="icon-angle-left"><span class="screen-reader-text hidden">prev</span></i></a></li>
+      <?php if ($paged > 1 && $paged  !== 2) : ?>
+        <li class="item_k"><a href="<?php echo esc_url(get_pagenum_link($paged - 1), false); ?>"><i class="icon-angle-left"><span class="screen-reader-text hidden">prev</span></i></a></li>
+      <?php endif; ?>
+      <?php if ($paged == 2) : ?>
+        <li class="item_k"><a href="<?php echo esc_url(get_permalink($post_type_id)) ?>"><i class="icon-angle-left"><span class="screen-reader-text hidden">prev</span></i></a></li>
       <?php endif; ?>
       <?php if (get_previous_posts_link()) : ?>
         <li><?php echo  get_previous_posts_link(); ?></li>
@@ -110,7 +113,7 @@ function pagination_post_author($max_num_pages = 0,$post_type_id)
       // here
       foreach ((array) $links as $link) {
         $class = $paged == $link ? 'page-numbers current' : '';
-        printf('<li><a class="%s" href="%s">%s</a></li>' . "\n", $class, esc_url(get_pagenum_link($link,false)), $link);
+        printf('<li><a class="%s" href="%s">%s</a></li>' . "\n", $class, esc_url(get_pagenum_link($link, false)), $link);
       }
       ?>
       <?php if (get_next_posts_link()) : ?>
@@ -123,7 +126,7 @@ function pagination_post_author($max_num_pages = 0,$post_type_id)
       if (!in_array($max_num_pages, $links)) {
         if (!in_array($max_num_pages - 1, $links))
           $class = $paged == $max_num_pages ? ' class="page-numbers current"' : '';
-        printf('<li class="%s"><a href="%s">%s</a></li>' . "\n", $class, esc_url(get_pagenum_link($max_num_pages,false)), $max_num_pages);
+        printf('<li class="%s"><a href="%s">%s</a></li>' . "\n", $class, esc_url(get_pagenum_link($max_num_pages, false)), $max_num_pages);
       }
       ?>
       <?php if ($paged < $max_num_pages) : ?>
