@@ -311,14 +311,22 @@ function ux_products($atts, $content = null, $tag = '' ) {
 							</div>
 
 							<div class="box-text <?php echo implode(' ', $classes_text); ?>" <?php echo get_shortcode_inline_css($css_args); ?>>
+								<style>
+									.price-wrapper .star-rating{display: none;}
+									
+								</style>
 								<?php
 									do_action( 'woocommerce_before_shop_loop_item_title' );
 
 									echo '<div class="title-wrapper">';
 									do_action( 'woocommerce_shop_loop_item_title' );
+									echo '<div class="woocommerce-product-rating devvn_single_rating">
+									<div class="star-rating star-rating--inline" role="img" aria-label="Được xếp hạng 0 sao"><span style="width:0%">Được xếp hạng <strong class="rating">0</strong> sao</span></div>                                        
+									</div>';
 									echo '</div>';
 
 									echo '<div class="price-wrapper">';
+									
 									do_action( 'woocommerce_after_shop_loop_item_title' );
 									echo '</div>';
 
