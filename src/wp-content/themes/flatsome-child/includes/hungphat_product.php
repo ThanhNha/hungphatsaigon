@@ -93,6 +93,21 @@ function  filterPriceProduct()
         </div>
       </div>
     </aside>
+    <script>
+      jQuery(document).ready(function() {
+        current_url = window.location.href;
+        fillter_btn = jQuery(".loc_gia .radio a")
+        if (fillter_btn.length) {
+          fillter_btn.each((index, ele) => {
+            let href = jQuery(ele).attr('href');
+            console.log(href)
+            if (href != current_url) return;
+            jQuery(ele).addClass("active");
+          })
+        }
+
+      });
+    </script>
   <?php endif; ?>
   <?php
 
