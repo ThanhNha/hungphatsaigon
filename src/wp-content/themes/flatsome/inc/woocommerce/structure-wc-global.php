@@ -490,7 +490,7 @@ function flatsome_account_login_lightbox(){
     </div>
   <?php }
 }
-add_action('wp_footer', 'flatsome_account_login_lightbox', 10);
+// add_action('wp_footer', 'flatsome_account_login_lightbox', 10);
 
 // Payment icons to footer
 function flatsome_footer_payment_icons(){
@@ -525,7 +525,7 @@ if ( ! function_exists( 'flatsome_wc_get_gallery_image_html' ) ) {
 	function flatsome_wc_get_gallery_image_html( $attachment_id, $main_image = false, $size = 'woocommerce_single' ) {
 		$gallery_thumbnail = wc_get_image_size( 'gallery_thumbnail' );
 		$thumbnail_size    = apply_filters( 'woocommerce_gallery_thumbnail_size', array( $gallery_thumbnail['width'], $gallery_thumbnail['height'] ) );
-		$image_size        = apply_filters( 'woocommerce_gallery_image_size', $size );
+		$image_size        = 'full';
 		$full_size         = apply_filters( 'woocommerce_gallery_full_size', apply_filters( 'woocommerce_product_thumbnails_large_size', 'full' ) );
 		$thumbnail_src     = wp_get_attachment_image_src( $attachment_id, $thumbnail_size );
 		$full_src          = wp_get_attachment_image_src( $attachment_id, $full_size );

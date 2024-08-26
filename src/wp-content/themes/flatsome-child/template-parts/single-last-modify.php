@@ -1,8 +1,8 @@
 <div class="row section-last-modify">
-  <?php if (!is_search() && !is_front_page() &&! is_tax() && !is_tag() && !is_product_tag() && !is_page('53316') && !is_page('15179') && !is_page('39926') && !is_category() && !is_404() && !is_single() && !is_product_category()  ) : ?>
+  <?php if (!is_search() && !is_front_page() &&! is_tax() && !is_tag() && !is_product_tag() && !is_page('53316') && !is_page('15179') && !is_page('39926') && !is_category() && !is_404() && !is_product() && !is_product_category()  ) : ?>
   <div class="large-4 last-modify">
     <i class="far fa-calendar div_inline mr_5 ml_15" aria-hidden="true"></i> 
-    <span class="hidden-xs">Cập nhật lần cuối:</span> 
+    <span class="hidden-xs">Cập nhật lần cuối: </span> 
     <?php echo  get_the_modified_date('H:s d/m/Y'); ?>
   </div>
 

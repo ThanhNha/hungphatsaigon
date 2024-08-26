@@ -14,22 +14,19 @@ $args = array(
   'paged' => (get_query_var('paged') ? get_query_var('paged') : 1),
 );
 $posts_promotion = new WP_Query($args);
-
 $max_num_pages = $posts_promotion->max_num_pages;
 
 ?>
 
-<section class="section related-author">
-  <div class="section-content relative">
-    <div class="row is-title-author">
-      <div class="col">
-        <h2 class="title">BÀI VIẾT LIÊN QUAN</h2>
+<?php if ($posts_promotion->have_posts()) : ?>
+  <section class="section related-author">
+    <div class="section-content relative">
+      <div class="row is-title-author">
+        <div class="col">
+          <h2 class="title">BÀI VIẾT LIÊN QUAN</h2>
+        </div>
       </div>
-    </div>
-
-    <div class="row">
-      <?php
-      if ($posts_promotion->have_posts()) : ?>
+      <div class="row">
         <?php while ($posts_promotion->have_posts()) : $posts_promotion->the_post(); ?>
 
           <div class="col post-item">
@@ -38,7 +35,8 @@ $max_num_pages = $posts_promotion->max_num_pages;
                 <div class="box-image col medium-5 large-3">
                   <div class="image-cover" style="padding-top:52%;">
                     <a href="<?php echo get_the_permalink(); ?>" class="plain" aria-label="<?php echo get_the_title(); ?>">
-                      <img width="300" height="158" src="<?php echo get_the_post_thumbnail_url(); ?>" class="attachment-medium size-medium wp-post-image" alt="<?php echo get_the_title(); ?>" decoding="async" loading="lazy" sizes="(max-width: 300px) 100vw, 300px"> </a>
+                      <img width="300" height="158" src="<?php echo get_the_post_thumbnail_url(); ?>" class="attachment-medium size-medium wp-post-image" alt="<?php echo get_the_title(); ?>" decoding="async" loading="lazy" sizes="(max-width: 300px) 100vw, 300px"> 
+                    </a>
                   </div>
                 </div>
                 <div class="box-text col medium-7 large-9">
@@ -54,14 +52,13 @@ $max_num_pages = $posts_promotion->max_num_pages;
             </div>
           </div>
         <?php endwhile; ?>
-      <?php endif; ?>
-
+      </div>
+      <div class="row align-center">
+        <?php pagination_post_promotion($max_num_pages); ?>
+      </div>
     </div>
-    <div class="row align-center">
-      <?php pagination_post_promotion($max_num_pages); ?>
-    </div>
-  </div>
-</section>
+  </section>
+<?php endif; ?>
 
 
 <?php
@@ -83,7 +80,7 @@ function pagination_post_promotion($max_num_pages = 0)
   if (($paged + 2) <= $max_num_pages) {
     $links[] = $paged + 1;
   }
-?>
+  ?>
   <nav class="woocommerce-pagination">
     <ul class="page-numbers nav-pagination links text-center">
       <?php if ($paged > 1) : ?>
@@ -96,7 +93,7 @@ function pagination_post_promotion($max_num_pages = 0)
         <?php $class = 1 == $paged ? 'page-numbers current' : ''; ?>
 
         <li><a class="<?php echo $class; ?>" href=" <?php echo esc_url(get_pagenum_link(1,false)) ?>">1
-          </a></li>
+        </a></li>
       <?php endif; ?>
 
       <?php
@@ -125,5 +122,5 @@ function pagination_post_promotion($max_num_pages = 0)
       <?php endif; ?>
     </ul>
   </nav>
-<?php
+  <?php
 }

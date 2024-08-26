@@ -85,6 +85,8 @@ $args_others = apply_filters( 'woocommerce_related_products_args', array(
 $recentPosts = new WP_Query( $args );
 $recentPosts_others = new WP_Query( $args_others );
 
+echo do_shortcode('[block id="bottom-content"] ');
+
 if ( $recentPosts ) : ?>
 <div class="row content-row row-divided row-large row-reverse">
 	<div class="col">

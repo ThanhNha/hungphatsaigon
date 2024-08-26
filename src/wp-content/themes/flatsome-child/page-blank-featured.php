@@ -14,14 +14,17 @@ get_header(); ?>
 		<div class="large-12 col text-left  text-uppercase breadcrumbs-hp">
 			
 			<?php if (function_exists('rank_math_the_breadcrumbs')) rank_math_the_breadcrumbs(); ?>        
-		</div>   
+		</div> 
+		<div class="large-12 col">
+			<?php while ( have_posts() ) : the_post(); ?>
+				<?php if (!is_page('53316') && !is_front_page()) :?>
+					<h1><?php the_title(); ?></h1>
+				<?php endif ;?>
+				<?php the_content(); ?>
+
+			<?php endwhile; // end of the loop. ?>
+		</div>  
 	</div>
-
-	<?php while ( have_posts() ) : the_post(); ?>
-
-		<?php the_content(); ?>
-
-	<?php endwhile; // end of the loop. ?>
 
 </div>
 <?php get_footer(); ?>

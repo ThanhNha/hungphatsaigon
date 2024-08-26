@@ -18,6 +18,7 @@
 				  // 	} else{ echo '<p>You need to assign Widgets to <strong>"Shop Sidebar"</strong> in <a href="'.get_site_url().'/wp-admin/widgets.php">Appearance > Widgets</a> to show anything here</p>';
 				  // }
 				?>
+				<?php echo do_shortcode('[block id="danh-muc-icon-o-top-trang-category"]');?>
 				<?php echo do_shortcode('[filter_price_product]');?>
 			</div>
 			<?php flatsome_sticky_column_close( 'category_sticky_sidebar' ); ?>

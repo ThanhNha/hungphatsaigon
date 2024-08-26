@@ -5,7 +5,7 @@
 add_filter( 'rank_math/frontend/breadcrumb/html', function( $html, $crumbs, $class ) {
     global $post;
     //(is_single() && strcmp(get_post_type(),"job")==0) or (is_single() && strcmp(get_post_type(),"project")==0) or (is_single() && strcmp(get_post_type(),"map")==0) or
-    if( is_tax('catchuyengia') || is_tax('listkhuyenmai') || is_tax('listkhaitruong') || is_tax('listproject') || is_tax('map_category') || is_tax('listjob') ):
+    if( is_tax('catchuyengia') || is_tax('listtintuc') || is_tax('listkhuyenmai') || is_tax('listkhaitruong') || is_tax('listproject') || is_tax('map_category') || is_tax('listjob') ):
         $out = "";
         $out .= '<nav aria-label="breadcrumbs" class="rank-math-breadcrumb">';
         $out .= '<p>';

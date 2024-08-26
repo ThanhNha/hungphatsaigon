@@ -24,6 +24,7 @@ $posts_author = new WP_Query($args);
 $max_num_pages = $posts_author->max_num_pages;
 
 ?>
+<?php if ($posts_author->have_posts()) : ?>
 
 <section class="section related-author">
   <div class="section-content relative">
@@ -34,8 +35,6 @@ $max_num_pages = $posts_author->max_num_pages;
     </div>
 
     <div class="row">
-      <?php
-      if ($posts_author->have_posts()) : ?>
         <?php while ($posts_author->have_posts()) : $posts_author->the_post(); ?>
 
           <div class="col post-item">
@@ -60,7 +59,6 @@ $max_num_pages = $posts_author->max_num_pages;
             </div>
           </div>
         <?php endwhile; ?>
-      <?php endif; ?>
 
     </div>
     <div class="row align-center">
@@ -68,6 +66,7 @@ $max_num_pages = $posts_author->max_num_pages;
     </div>
   </div>
 </section>
+<?php endif; ?>
 
 
 <?php

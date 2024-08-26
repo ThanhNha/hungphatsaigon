@@ -6,6 +6,161 @@ function filter_plugin_updates( $value ) {
 add_filter( 'site_transient_update_plugins', 'filter_plugin_updates' );
 
 /** 
+ * Add crawlerDetect - detect search engine bots with php
+ */
+function crawlerDetect($USER_AGENT){
+    $crawlers = array(
+        'Google'=>'Google',
+        'MSN' => 'msnbot',
+        'Rambler'=>'Rambler',
+        'Yahoo'=> 'Yahoo',
+        'AbachoBOT'=> 'AbachoBOT',
+        'accoona'=> 'Accoona',
+        'AcoiRobot'=> 'AcoiRobot',
+        'ASPSeek'=> 'ASPSeek',
+        'CrocCrawler'=> 'CrocCrawler',
+        'Dumbot'=> 'Dumbot',
+        'FAST-WebCrawler'=> 'FAST-WebCrawler',
+        'GeonaBot'=> 'GeonaBot',
+        'Gigabot'=> 'Gigabot',
+        'Lycos spider'=> 'Lycos',
+        'MSRBOT'=> 'MSRBOT',
+        'Altavista robot'=> 'Scooter',
+        'AltaVista robot'=> 'Altavista',
+        'ID-Search Bot'=> 'IDBot',
+        'eStyle Bot'=> 'eStyle',
+        'Scrubby robot'=> 'Scrubby',
+    );
+    $speedtests = array(
+        'Chrome-Lighthouse'=>'Chrome-Lighthouse',
+    );
+    foreach ($crawlers as $key => $value) {
+        if ( isContain($USER_AGENT , $value) == 1 ){
+            return 1;//bot index
+        }
+    }
+    foreach ($speedtests as $key => $value) {
+        if ( isContain($USER_AGENT , $value) == 1 ){
+            return 2;//bot for speed test
+        }
+    }
+    return 3;//client normal
+}
+function isContain($text,$key){
+
+    if (strpos($text, $key) !== false) {
+        return 1;
+    }else{
+        return -1;
+    }
+}
+
+/** 
+ * Add content in Header
+ */ 
+function myContentHeader() {?>
+    <meta name="facebook-domain-verification" content="cx387pfyusvus9ia35xbcsmlovowwz" />
+    <?php
+    if (crawlerDetect($_SERVER['HTTP_USER_AGENT']) == 2) {
+        $botspeed = 1;
+    }
+    if($botspeed!=1):
+        ?>
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);    })(window,document,'script','dataLayer','GTM-59ZLF63');
+        </script>
+        <!-- End Google Tag Manager -->
+        <script>
+            !function (w, d, t) {
+                w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++
+                    )ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=i+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+
+                ttq.load('C4JJE8T1KC6QQ9D0K75G');
+                ttq.page();
+            }(window, document, 'ttq');
+        </script>
+        <script>
+            !function (w, d, t) {
+                w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++
+                    )ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=i+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+                ttq.load('CDHNTEJC77UB3KL6FCFG');
+                ttq.page();
+            }(window, document, 'ttq');
+        </script>
+    <?php endif; ?>
+     <script type="text/javascript" src='<?php echo get_stylesheet_directory_uri(); ?>/js/flickity.pkgd.min.js'></script>
+<?php }
+add_action( 'wp_head', 'myContentHeader' );
+
+/** 
+ * Add content in Footer
+ */ 
+function myContentFooter() {
+    ?>    
+    <script>
+        jQuery(document).ready(function () {
+            jQuery(".term-description").click(function(){
+                jQuery(this).toggleClass("ok");
+            });
+            jQuery("#product-sidebar #block-3").click(function(){
+                jQuery(this).toggleClass("ok");
+            });
+            jQuery(".button-cat-blog .button.primary").click(function(){
+                jQuery(this).toggleClass("active");
+            });
+            jQuery('.js-slider').owlCarousel({
+                center: true,
+                stagePadding: 15
+            });
+        });
+
+        jQuery(document).ready(function($) {
+
+            /* fix iOS touchmove issue */
+            ;
+            (function() {
+                let touchingCarousel = false
+                let startXCoordinate
+
+                document.body.addEventListener('touchstart', e => {
+                    if (e.target.closest('.flickity-slider')) {
+                        touchingCarousel = true
+                    } else {
+                        touchingCarousel = false
+                        return
+                    }
+                    startXCoordinate = e.touches[0].pageX
+                })
+
+                document.body.addEventListener('touchmove', e => {
+                    if (
+                        !touchingCarousel ||
+                        !e.cancelable ||
+                        Math.abs(e.touches[0].pageX - startXCoordinate) < 8
+                        ) return
+                        e.preventDefault()
+                    e.stopPropagation()
+                }, {
+                    passive: false
+                })
+            }())
+
+            /* prevent resize in flickity if still animating */
+            var resize = Flickity.prototype.resize;
+            Flickity.prototype.resize = function() {
+                if (!this.isAnimating) {
+                    resize.call(this);
+                }
+            };
+
+        });
+    </script>
+    <?php
+}
+add_action( 'wp_footer', 'myContentFooter' );
+
+/**
 * Get recently viewed product
 */
 function rc_woocommerce_recently_viewed_products( $atts, $content = null ) {
@@ -126,38 +281,147 @@ function rc_woocommerce_recently_viewed_products( $atts, $content = null ) {
 // Register the shortcode
 add_shortcode("woocommerce_recently_viewed_products", "rc_woocommerce_recently_viewed_products");
 
+/** 
+* WooCommerce – display category title on category archive 
+*/
+add_action( 'woocommerce_archive_description', 'woocommerce_category_tag_h1', 2 );
+function woocommerce_category_tag_h1() {
+    if( !is_search() ){
+        $product_cat_object = get_queried_object();
+        $product_cat = get_field('tag_h1', 'product_cat_' . $product_cat_object->term_id);
+    }
+    if (isset($product_cat)){?>
+        <h1 class="product_cat">
+            <?php echo $product_cat; ?>
+        </h1>
+    <?php } else if(is_search()){
+        $data_width = $_GET['s'];?>
+        <h1 class="product_cat">
+            Kết quả tìm kiếm: <?php echo $data_width; ?>
+        </h1>       
+        <h2 class="uppercase">
+            Sản phẩm
+        </h2>         
+    <?php }else{?>
+        <h1 class="product_cat">
+            <?php echo 'Sản phẩm'; ?>
+        </h1>
+    <?php }
+}
+
+/**
+ * Create vertica menu shortcode on Home page
+ */
+function vertica_menu_home_create_shortcode(){
+
+    $classes_opener  = array( 'header-vertical-menu__opener' );
+    $classes_fly_out = array( 'header-vertical-menu__fly-out' );
+
+    if ( get_theme_mod( 'header_nav_vertical_text_color', 'dark' ) === 'dark' ) $classes_opener[]            = 'dark';
+    if ( get_theme_mod( 'header_nav_vertical_fly_out_text_color', 'light' ) === 'dark' ) $classes_fly_out[]  = 'dark';
+    if ( is_front_page() && get_theme_mod( 'header_nav_vertical_fly_out_frontpage', 1 ) ) $classes_fly_out[] = 'header-vertical-menu__fly-out--open';
+    if ( get_theme_mod( 'header_nav_vertical_fly_out_shadow', 1 ) ) $classes_fly_out[]                       = 'has-shadow';
+    ?>
+
+    <div class="<?php echo esc_attr( implode( ' ', $classes_opener ) ); ?>">
+        <?php if ( get_theme_mod( 'header_nav_vertical_icon_style', 'plain' ) ) : ?>
+            <span class="header-vertical-menu__icon">
+                <?php echo get_flatsome_icon( 'icon-menu' ); ?>
+            </span>
+        <?php endif; ?>
+        <span class="header-vertical-menu__title">
+            <?php if ( get_theme_mod( 'header_nav_vertical_tagline' ) ) : ?>
+                <span class="header-vertical-menu__tagline"><?php echo esc_html( get_theme_mod( 'header_nav_vertical_tagline' ) ); ?></span>
+            <?php endif; ?>
+            <?php
+            if ( get_theme_mod( 'header_nav_vertical_text' ) ) :
+                echo esc_html( get_theme_mod( 'header_nav_vertical_text' ) );
+            else :
+                esc_html_e( 'Categories', 'flatsome' );
+            endif;
+            ?>
+        </span>
+        <?php echo get_flatsome_icon( 'icon-angle-down' ); ?>
+    </div>
+    <div class="<?php echo esc_attr( implode( ' ', $classes_fly_out ) ); ?>">
+        <?php
+        // TODO maybe refactor flatsome_header_nav() to render here?
+        if ( has_nav_menu( 'vertical' ) ) {
+            wp_nav_menu( array(
+                'theme_location' => 'vertical',
+                'menu_class'     => 'ux-nav-vertical-menu nav-vertical-fly-out',
+                'walker'         => new FlatsomeNavDropdown(),
+            ) );
+        } else {
+            $admin_url = get_admin_url() . 'customize.php?url=' . get_permalink() . '&autofocus%5Bsection%5D=menu_locations';
+            echo '<div class="inner-padding"><a href="' . $admin_url . '">Assign a menu in Theme Options > Menus</a></div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        }
+        ?>
+    </div>
+    <?php
+}
+add_shortcode('vertica_menu_home_shortcode', 'vertica_menu_home_create_shortcode');
+
+/**
+ * Woo - Remove breadcrumbs
+ */
+function remove_wc_breadcrumbs_1() {
+    remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
+}
+add_action( 'init', 'remove_wc_breadcrumbs_1' );
+
+
+/** 
+ * Woo - Remove breadcrumbs woo default - need check again
+ */
+function f( $markup, $breadcrumbs ){
+    return array();
+}
+add_filter('woocommerce_structured_data_breadcrumblist', 'f', 10, 2);
+add_filter('woocommerce_structured_data_product', 'f', 10, 2);
+
+/**
+ * Woo - Calculator sale price on Single page 
+ */
+add_filter( 'woocommerce_get_price_html', 'change_displayed_sale_price_html', 10, 2 );
+function change_displayed_sale_price_html( $price, $product ) {
+    // Only on sale products on frontend and excluding min/max price on variable products
+    if( is_product()){
+        // Get product prices
+        $regular_price = $product->get_regular_price(); // Regular price
+        $sale_price = $product->get_price(); // Active price (the "Sale price" when on-sale)
+
+        // "Saving price" calculation and formatting
+        $saving_price = wc_price( $regular_price - $sale_price );
+
+        // "Saving Percentage" calculation and formatting
+        $precision = 1; // Max number of decimals
+        $saving_percentage = round( 100 - ( $sale_price / $regular_price * 100 ) ) . '%';
+
+        // Append to the formated html price
+        if($product->get_type() === 'variable'){
+            $price ;
+        }
+        else{
+            $price .= sprintf( __('<span class="onsale-single price-hidden">-%s</span>
+            <div class="saved-sale price-hidden">(Tiết kiệm: %s)</div>', 'woocommerce' ), $saving_percentage, $saving_price );
+        }
+    }
+    return $price;
+}
+
+/**
+ * Woo - Add recently viewed products and danh muc noi bat
+ */
+function relatedProduct() {
+    echo do_shortcode('[woocommerce_recently_viewed_products][block id="danh-muc-noi-bat"]');
+}
+add_action( 'woocommerce_after_single_product', 'relatedProduct', 20 );
 
 
 /**
- *  Remove Comment
+ * Remove Related Products and Add after single product
  */
-/* 1.  Disable Comments on ALL post types */ 
-function updated_disable_comments_post_types_support() {
-    $types = get_post_types();
-    foreach ($types as $type) {
-        if(post_type_supports($type, 'comments')) {
-            remove_post_type_support($type, 'comments');
-            remove_post_type_support($type, 'trackbacks');
-        }
-    }    
-}
-add_action('admin_init', 'updated_disable_comments_post_types_support');
-
-/* 2. Hide any existing comments on front end */ 
-function disable_comments_hide_existing_comments($comments) {
-    $comments = array();
-    return $comments;
-}
-add_filter('comments_array', 'disable_comments_hide_existing_comments', 10, 2);
-
-/* 3. Disable commenting */ 
-function disable_comments_status() {
-    return false;
-}
-add_filter('comments_open', 'disable_comments_status', 20, 2);
-add_filter('pings_open', 'disable_comments_status', 20, 2);
-
-//Remove Related Products
 remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
 add_action( 'woocommerce_after_single_product', 'woocommerce_output_related_products', 10, 3 ); 
 
@@ -212,3 +476,54 @@ function my_function( $bool, $post_type, $page_title) {
  * Remove srcset 
  */
 add_filter( 'wp_calculate_image_srcset_meta', '__return_null' );
+
+/**
+ * Disable permalink on custom post type for Blocks
+ */
+add_filter('get_sample_permalink_html', 'my_hide_permalinks', 10, 5);
+function my_hide_permalinks($return, $post_id, $new_title, $new_slug, $post)
+{
+    if($post->post_type == 'blocks') {
+        return '';
+    }
+    return $return;
+}
+
+/**
+ * Change comment form title reply
+ */
+function mycustom_comment_form_title_reply( $defaults ) {  
+    $defaults['title_reply'] = __( 'Cảm nhận khách hàng' );  
+    return $defaults;
+}
+add_filter( 'comment_form_defaults', 'mycustom_comment_form_title_reply' );
+
+/**
+ * Change structure feed
+ */
+add_filter("the_excerpt_rss", "change_structure_feed");
+add_filter("the_content_feed", "change_structure_feed");
+
+/**
+ * @param  
+ * @return string
+ */
+function change_structure_feed($content)
+{
+    global $post;
+    $content = RankMath\Post::get_meta('description', $post->ID);
+
+    if (!$content) {
+        $content = RankMath\Helper::get_settings("titles.pt_{$post->post_type}_description");
+        if ($content) {
+            return RankMath\Helper::replace_vars($content, $post);
+        }
+    }
+    return $content;
+}
+
+add_filter("post_comments_feed_link", "change_structure_comments_feed");
+
+function change_structure_comments_feed($post_id){
+    return '';
+}

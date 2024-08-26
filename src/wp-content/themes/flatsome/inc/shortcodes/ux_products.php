@@ -312,8 +312,7 @@ function ux_products($atts, $content = null, $tag = '' ) {
 
 							<div class="box-text <?php echo implode(' ', $classes_text); ?>" <?php echo get_shortcode_inline_css($css_args); ?>>
 								<style>
-									.price-wrapper .star-rating{display: none;}
-									
+									.price-wrapper .star-rating{display: none;}									
 								</style>
 								<?php
 									do_action( 'woocommerce_before_shop_loop_item_title' );

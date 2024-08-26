@@ -17,7 +17,7 @@ get_header();
                     <p>
                         <a href="/">Trang chủ</a>
                         <span class="separator"> » </span>
-                        <a href="/he-thong-cua-hang">Hệ thống cửa hàng</a>
+                        <a href="/he-thong-cua-hang.html">Hệ thống cửa hàng</a>
                         <span class="separator"> » </span>
                         <span class="last"><?php the_field('shop_name');?></span>
                     </p>
@@ -228,9 +228,17 @@ get_header();
         $path = $parts['path'];
         $segments = explode('/', trim($path, '/'));
         $post_type = get_post_type(get_the_ID());
-        if (in_array('page', $segments) && $post_type === 'tac-gia') :
-            get_template_part('template-parts/related', 'author');
-        endif;
+        if (in_array('page', $segments) && $post_type === 'tac-gia') :?>   
+            <style type="text/css">
+                .author-hp,
+                .entry-content.single-page> :not(.related-author),
+                .section-last-modify,
+                #comments{display: none}
+            </style>     
+            <!-- // get_template_part('template-parts/posts/layout', get_theme_mod('blog_post_layout', 'right-sidebar')); -->
+            <!-- // get_template_part('template-parts/related', 'author'); -->
+        <?php endif;
+        
         get_template_part('template-parts/posts/layout', get_theme_mod('blog_post_layout', 'right-sidebar'));
     endif; ?>
 </div>

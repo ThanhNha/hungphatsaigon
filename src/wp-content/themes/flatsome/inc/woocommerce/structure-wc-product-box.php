@@ -81,11 +81,20 @@ if ( ! function_exists( 'woocommerce_template_loop_product_title' ) ) {
 	 */
 	function woocommerce_template_loop_product_title() {
 		// hp add code
-		echo '<h3 class="name product-title ' . esc_attr( apply_filters( 'woocommerce_product_loop_title_classes', 'woocommerce-loop-product__title' ) ) . '">';
-		woocommerce_template_loop_product_link_open();
-		echo get_the_title();  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		woocommerce_template_loop_product_link_close();
-		echo '</h3>';
+		if (is_single()) {
+			echo '<h4 class="name product-title ' . esc_attr( apply_filters( 'woocommerce_product_loop_title_classes', 'woocommerce-loop-product__title' ) ) . '">';
+			woocommerce_template_loop_product_link_open();
+			echo get_the_title();  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			woocommerce_template_loop_product_link_close();
+			echo '</h4>';
+		}
+		else{
+			echo '<h3 class="name product-title ' . esc_attr( apply_filters( 'woocommerce_product_loop_title_classes', 'woocommerce-loop-product__title' ) ) . '">';
+			woocommerce_template_loop_product_link_open();
+			echo get_the_title();  // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			woocommerce_template_loop_product_link_close();
+			echo '</h3>';
+		}
 	}
 }
 

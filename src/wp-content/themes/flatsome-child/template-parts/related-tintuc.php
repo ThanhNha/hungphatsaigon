@@ -4,7 +4,7 @@ global $post;
 $current_post = $post->ID;
 
 $args = array(
-  'post_type'      => 'khaitruong',
+  'post_type'      => 'tin-tuc',
   'post_status'    => 'publish',
   'orderby'          => 'date',
   'order'            => 'DESC',
@@ -13,12 +13,12 @@ $args = array(
   'posts_per_page' => '10',
   'paged' => (get_query_var('paged') ? get_query_var('paged') : 1),
 );
-$posts_grandprix = new WP_Query($args);
-$max_num_pages = $posts_grandprix->max_num_pages;
+$posts_tintuc = new WP_Query($args);
+$max_num_pages = $posts_tintuc->max_num_pages;
 
 ?>
 
-<?php if ($posts_grandprix->have_posts()) : ?>
+<?php if ($posts_tintuc->have_posts()) : ?>
   <section class="section related-author">
     <div class="section-content relative">
       <div class="row is-title-author">
@@ -28,7 +28,7 @@ $max_num_pages = $posts_grandprix->max_num_pages;
       </div>
 
       <div class="row">
-        <?php while ($posts_grandprix->have_posts()) : $posts_grandprix->the_post(); ?>
+        <?php while ($posts_tintuc->have_posts()) : $posts_tintuc->the_post(); ?>
 
           <div class="col post-item">
             <div class="col-inner">
@@ -56,7 +56,7 @@ $max_num_pages = $posts_grandprix->max_num_pages;
 
       </div>
       <div class="row align-center">
-        <?php pagination_post_grandprix($max_num_pages); ?>
+        <?php pagination_post_tintuc($max_num_pages); ?>
       </div>
     </div>
   </section>
@@ -64,7 +64,7 @@ $max_num_pages = $posts_grandprix->max_num_pages;
 
 
 <?php
-function pagination_post_grandprix($max_num_pages = 0)
+function pagination_post_tintuc($max_num_pages = 0)
 
 {
 
