@@ -14,8 +14,6 @@ $args = array(
   'meta_value'    => $id,
   'orderby'          => 'date',
   'order'            => 'DESC',
-  'include'          => array(),
-  'exclude'          => array(),
   'posts_per_page' => '10',
   'paged' => (get_query_var('paged') ? get_query_var('paged') : 1),
 );

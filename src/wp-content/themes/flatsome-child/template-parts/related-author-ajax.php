@@ -13,8 +13,6 @@ $args = array(
   'meta_value'    => $id,
   'orderby'          => 'date',
   'order'            => 'DESC',
-  'include'          => array(),
-  'exclude'          => array(),
   'posts_per_page' => '10',
   'paged' => $paged
 );
@@ -208,8 +206,7 @@ $max_num_pages = $posts->max_num_pages;
                     id: author_id,
                   },
                   beforeSend: function() {
-                    // Show Progressloader container
-                    //    console.log('hello');
+
                   },
                   success: function(data) {
                     jQuery("#loader-site").addClass('hidden');
@@ -218,7 +215,6 @@ $max_num_pages = $posts->max_num_pages;
 
                     jQuery("#data-related-author").html(data);
 
-                    //    console.log('done');
                   },
                 });
 

@@ -8,7 +8,6 @@ $args = array(
   'post_status'    => 'publish',
   'orderby'          => 'date',
   'order'            => 'DESC',
-  'include'          => array(),
   'post__not_in'          => array($current_post),
   'posts_per_page' => '10',
   'paged' => (get_query_var('paged') ? get_query_var('paged') : 1),

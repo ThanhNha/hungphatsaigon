@@ -1,5 +1,46 @@
 <?php
 
+
+/**
+ *
+ * Trigger Main Query
+ *
+ * Affect to UI Quey
+ *
+ */
+
+function wpdocs_set_custom_isvars($query)
+{
+    if (!is_admin()) {
+
+        $sticky_posts = array();
+        $sticky_posts =  get_option('sticky_posts');
+        $query->set('ignore_sticky_posts', true);
+        $query->set('post__not_in', $sticky_posts);
+    }
+}
+add_action('parse_query', 'wpdocs_set_custom_isvars');
+
+add_action('pre_get_posts', 'remove_sticky_from_main_loop');
+
+function remove_sticky_from_main_loop($query)
+{
+    if (!is_admin()) {
+        if ($query->is_main_query()) {
+            $sticky_posts = array();
+            $sticky_posts =  get_option('sticky_posts');
+            $existing_post__not_in = $query->get('post__not_in');
+            if (is_array($existing_post__not_in)) {
+                $excluded_post_ids = array_merge($existing_post__not_in, $sticky_posts);
+            } else {
+                $excluded_post_ids = $sticky_posts;
+            }
+            $query->set('ignore_sticky_posts', true);
+            $query->set('post__not_in', $excluded_post_ids);
+        }
+    }
+}
+
 /**
  *  Admin Part
  *
@@ -25,24 +66,6 @@ function get_post_type_sticky()
     }
 }
 
-add_action('post_submitbox_start', 'show_sticky_option_on_post_edit');
-
-function show_sticky_option_on_post_edit($post)
-{
-    if (current_user_can('edit_others_posts') && post_type_supports($post->post_type, 'sticky')) {
-        $sticky_checkbox_checked = is_sticky($post->post_id) ? 'checked="checked"' : '';
-        $sticky_span = '<span id="sticky-span"><input id="sticky" name="sticky" type="checkbox" value="sticky" ' . $sticky_checkbox_checked . ' /> <label for="sticky" class="selectit">' . __('Stick this post to the front page') . '</label><br /></span>';
-        $is_sticky = is_sticky($post->post_id) ? 'true' : 'false';
-        echo '
-        <script>
-        window.addEventListener("load", (event) => {
-            document.getElementById("visibility-radio-password").insertAdjacentHTML("beforebegin", `' . $sticky_span . '`);
-            if (' . $is_sticky . ')
-                document.getElementById("post-visibility-display").innerHTML = "Public, Sticky";
-        });
-        </script>';
-    }
-}
 
 add_filter('manage_posts_columns', 'add_sticky_column_and_counter_on_table_manage', 10, 2);
 
@@ -76,32 +99,23 @@ function add_sticky_column_and_counter_on_table_manage($columns, $post_type)
         </script>';
     }
     return $columns;
+
+    add_action('post_submitbox_start', 'show_sticky_option_on_post_edit');
+
+    function show_sticky_option_on_post_edit($post)
+    {
+        if (current_user_can('edit_others_posts') && post_type_supports($post->post_type, 'sticky')) {
+            $sticky_checkbox_checked = is_sticky($post->post_id) ? 'checked="checked"' : '';
+            $sticky_span = '<span id="sticky-span"><input id="sticky" name="sticky" type="checkbox" value="sticky" ' . $sticky_checkbox_checked . ' /> <label for="sticky" class="selectit">' . __('Stick this post to the front page') . '</label><br /></span>';
+            $is_sticky = is_sticky($post->post_id) ? 'true' : 'false';
+            echo '
+        <script>
+        window.addEventListener("load", (event) => {
+            document.getElementById("visibility-radio-password").insertAdjacentHTML("beforebegin", `' . $sticky_span . '`);
+            if (' . $is_sticky . ')
+                document.getElementById("post-visibility-display").innerHTML = "Public, Sticky";
+        });
+        </script>';
+        }
+    }
 }
-
-/**
- *
- * Trigger Main Query
- *
- * Affect to UI Quey
- *
- */
-
- add_action('pre_get_posts', 'remove_sticky_from_main_loop');
-
- function remove_sticky_from_main_loop($query)
- {
-     if (!is_admin()) {
-         if ($query->is_main_query()) {
-             $sticky_posts = array();
-             $sticky_posts =  get_option('sticky_posts');
-             $existing_post__not_in = $query->get('post__not_in');
-             if (is_array($existing_post__not_in)) {
-                 $excluded_post_ids = array_merge($existing_post__not_in, $sticky_posts);
-             } else {
-                 $excluded_post_ids = $sticky_posts;
-             }
-             $query->set('ignore_sticky_posts', true);
-             $query->set('post__not_in', $excluded_post_ids);
-         }
-     }
- }
