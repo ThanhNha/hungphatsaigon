@@ -71,7 +71,7 @@ add_filter('manage_posts_columns', 'add_sticky_column_and_counter_on_table_manag
 
 function add_sticky_column_and_counter_on_table_manage($columns, $post_type)
 {
-    if (post_type_supports($post_type, 'sticky')) {
+    if (post_type_supports($post_type, 'sticky') && $post_type == 'post') {
 
         $columns['sticky'] = 'Sticky';
 

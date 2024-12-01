@@ -1,0 +1,27 @@
+<?php
+function show_only_products_from_current_category($query)
+{
+  if (!is_admin() && $query->is_main_query() && (is_product_category())) {
+
+    global $wp_query;
+
+    $parent_id = $wp_query->get_queried_object()->term_id;
+
+    if (isset($current_category->term_id) && $current_category->taxonomy === 'product_cat') {
+
+      $query->set('tax_query', array(
+        array(
+          'taxonomy' => 'product_cat',
+          'field'    => 'id',
+          'terms'    => $current_category->term_id,
+          'include_children' => false,
+          'operator' => 'IN',
+        ),
+      ));
+    }
+  }
+}
+add_action('pre_get_posts', 'show_only_products_from_current_category');
+
+
+
